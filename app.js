@@ -36,7 +36,32 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 app.get("/", function(req, res) {
-  res.render("home");
+  Article.find(function(err, articles) {
+    if (err) {
+      console.log("error");
+    } else {
+      res.render("home", {
+        articles: articles
+        });
+    }
+  });
+});
+
+app.get("/articles/:articleID", function(req, res){
+  const requestedID = req.params.articleID;
+
+  Article.findOne({_id: requestedID}, function(err, article) {
+    if (!err) {
+
+          res.render("article", {
+            title: article.title,
+            author: article.author,
+            date: article.date,
+            content: article.content
+          });
+        }
+      });
+
 });
 
 app.listen(3000, function() {
