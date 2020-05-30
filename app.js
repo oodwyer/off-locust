@@ -14,16 +14,18 @@ const articleSchema = new mongoose.Schema({
   date: Date,
   author: String,
   content: String,
+  section: String,
   img: { data: Buffer, contentType: String }
 });
 
 const Article = mongoose.model("Article", articleSchema);
 
 const testArticle = new Article({
-  title: "Test Article Title",
+  title: "Test Article Title 2",
   date: "May 30, 2020",
   author: "Olivia O'Dwyer",
-  content: "This is the test article content blah blah blah",
+  content: "This is the test article 2 content blah blah blah",
+  section: "exposed"
 });
 
 // testArticle.save();
@@ -47,6 +49,31 @@ app.get("/", function(req, res) {
   });
 });
 
+app.get("/exposed", function(req, res) {
+  Article.find({section: "exposed"}, function(err, articles) {
+    if (err) {
+      console.log("error");
+    } else {
+      res.render("exposed", {
+        articles: articles
+        });
+    }
+  });
+});
+
+app.get("/confessionals", function(req, res) {
+  Article.find({section: "confessionals"}, function(err, articles) {
+    if (err) {
+      console.log("error");
+    } else {
+      res.render("confessionals", {
+        articles: articles
+        });
+    }
+  });
+});
+
+
 app.get("/articles/:articleID", function(req, res){
   const requestedID = req.params.articleID;
 
@@ -63,6 +90,7 @@ app.get("/articles/:articleID", function(req, res){
       });
 
 });
+
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
