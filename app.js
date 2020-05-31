@@ -7,7 +7,11 @@ const _ = require("lodash");
 //CREATE MONGOOSE DB
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/locustDB", {useNewUrlParser: true, useUnifiedTopology: true});
+//local connection
+// mongoose.connect("mongodb://localhost:27017/locustDB", {useNewUrlParser: true, useUnifiedTopology: true});
+
+//mongo db connection
+mongoose.connect("mongodb+srv://locust-admin:locust@off-locust-tsemd.mongodb.net/locustDB", {useNewUrlParser: true, useUnifiedTopology: true});
 
 const articleSchema = new mongoose.Schema({
   title: String,
@@ -28,7 +32,7 @@ const testArticle = new Article({
   section: "exposed"
 });
 
-// testArticle.save();
+testArticle.save();
 
 const app = express();
 
