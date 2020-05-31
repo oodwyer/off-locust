@@ -32,7 +32,13 @@ const testArticle = new Article({
   section: "exposed"
 });
 
-testArticle.save();
+// testArticle.save();
+
+const questionSchema = new mongoose.Schema({
+  content: String
+});
+
+const Question = mongoose.model("Question", questionSchema);
 
 const app = express();
 
@@ -147,6 +153,22 @@ app.get("/articles/:articleID", function(req, res){
 
 });
 
+app.post("/question", function(req, res) {
+  //create new question object
+  const question = new Question({
+      content: req.body.qBody
+    });
+
+  //save to db
+  question.save(function(err){
+    if (err) {
+      console.log("error");
+    } else {
+      res.redirect("/ask-off-locust");
+    }
+  });
+
+});
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");

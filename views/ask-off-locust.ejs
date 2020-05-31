@@ -2,6 +2,14 @@
 
 <h1>Ask Off Locust</h1>
 
+<br>
+
+<form action="/question" method="post">
+  <h2>Question for us?</h2>
+  <textarea class="form-control" name="qBody" rows="3" cols="15"></textarea>
+  <button type="submit" name="button">Submit your question</button>
+</form>
+
 <%  articles.forEach(function(a){ %>
 
     <h1><%=a.title%></h1>
