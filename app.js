@@ -73,6 +73,57 @@ app.get("/confessionals", function(req, res) {
   });
 });
 
+app.get("/avant-garde", function(req, res) {
+  Article.find({section: "avant-garde"}, function(err, articles) {
+    if (err) {
+      console.log("error");
+    } else {
+      res.render("avant-garde", {
+        articles: articles
+        });
+    }
+  });
+});
+
+app.get("/after-hours", function(req, res) {
+  Article.find({section: "after-hours"}, function(err, articles) {
+    if (err) {
+      console.log("error");
+    } else {
+      res.render("after-hours", {
+        articles: articles
+        });
+    }
+  });
+});
+
+app.get("/ask-off-locust", function(req, res) {
+  Article.find({section: "ask-off-locust"}, function(err, articles) {
+    if (err) {
+      console.log("error");
+    } else {
+      res.render("ask-off-locust", {
+        articles: articles
+        });
+    }
+  });
+});
+
+app.get("/author/:authorName", function(req, res) {
+  const requestedAuthor = req.params.authorName;
+
+  Article.find({author: requestedAuthor}, function(err, articles) {
+    if (err) {
+      console.log("error");
+    } else {
+      res.render("author", {
+        authorName: requestedAuthor,
+        articles: articles
+        });
+    }
+  });
+});
+
 
 app.get("/articles/:articleID", function(req, res){
   const requestedID = req.params.articleID;
@@ -82,6 +133,7 @@ app.get("/articles/:articleID", function(req, res){
 
           res.render("article", {
             title: article.title,
+            id: article._id,
             author: article.author,
             date: article.date,
             content: article.content
