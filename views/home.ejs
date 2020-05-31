@@ -2,41 +2,61 @@
 
 <h2 class="section-title">FEATURED</h2>
 
+<div class="container">
+  <div class="row">
 
-<%  articles.forEach(function(a){ %>
+    <%  articles.forEach(function(a){ %>
 
 
     <h1><%=a.title%></h1>
     <p>
-    <%=a.content.substring(0, 100) + " ..."%>
-    <a href="/articles/<%=a._id%>">Read More</a>
+      <%=a.content.substring(0, 100) + " ..."%>
+      <a href="/articles/<%=a._id%>">Read More</a>
     </p>
 
-
 <% }) %>
-<div class="row">
-  <div class="lg-col-5  sm-col-11">
-    <div class="card home-card">
-      <img class="card-img-top" src="images/sample-img.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">ARTICLE TITLE HERE</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-    </div>
 
-    <div class="lg-col-5  sm-col-11">
+    <div class="col col-lg-6  col-sm-12">
+      <a href="/">
       <div class="card home-card">
-        <img class="card-img-top" src="..." alt="Card image cap">
+        <img class="card-img-top" src="images/sample-img.png" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title">ARTICLE TITLE HERE</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h5 class="card-title">ARTICLE TITLE WRITTEN HERE</h5>
         </div>
       </div>
-
+      </a>
     </div>
+
+    <div class="col col-lg-6  col-sm-12">
+      <a href="/">
+      <div class="card home-card">
+        <img class="card-img-top" src="images/sample-img.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">LONGER ARTICLE TITLE WRITTEN HERE</h5>
+        </div>
+      </div>
+      </a>
+    </div>
+
+
   </div>
 </div>
+
 <h2 class="section-title">ABOUT</h2>
+<div class="container">
+  <div class="row">
+    <div class="col col-lg-4 col-sm-12 col-xs-12">
+      <img id="about-img" src="images/off-locust-logo.png" alt="off-locust-logo">
+    </div>
+    <div class="col col-lg-8 col-sm-12 col-xs-12">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.
+
+      </p>
+    </div>
+
+  </div>
+</div>
 
 
 <%- include("partials/footer"); -%>
