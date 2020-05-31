@@ -7,8 +7,7 @@ body{
   background-color: black;
   color:white;
 }
-h1{
-}
+
 p {
    font-family: 'CMUSerifRoman', serif;
    font-weight: normal;
@@ -25,14 +24,20 @@ p {
 }
 #navbar-logo{
   width:80px;
-  /* height:50px; */
-  /* object-fit: cover; */
+
 }
 #navbar .nav-link{
   font-family: nos;
   font-size:1.5em;
   padding-right:30px;
+  transition:color .15s ease-out;
+
 }
+#navbar .nav-link:hover{
+  color:#c91d14;
+  /* or gray */
+}
+
 
 /* Home */
 .section-title{
@@ -105,4 +110,13 @@ p {
 }
 .footer-links{
   margin-top:20px;
+}
+#footer .fa{
+  font-size:3.2em;
+  margin:0 9px 30px 9px;
+  transition:color .1s ease-out;
+
+}
+#footer .fa:hover{
+  color:#c91d14;
 }
