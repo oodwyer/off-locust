@@ -1,3 +1,84 @@
+@font-face{
+  src: url(fonts/Granaina-Limpia-Font.ttf);
+  font-family:nos;
+}
+
+body{
+  background-color: black;
+  color:white;
+}
 h1{
-  color:red;
+}
+
+/* Navbar  */
+#navbar{
+  padding-top:10px;
+  color:black;
+  background-color: white;
+  margin-bottom: 60px;
+}
+#navbar-logo{
+  width:80px;
+  /* height:50px; */
+  /* object-fit: cover; */
+}
+#navbar .nav-link{
+  font-family: nos;
+  font-size:1.5em;
+  padding-right:30px;
+}
+
+/* Home */
+.section-title{
+  text-align: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size:3em;
+}
+
+/* Home cards */
+.row{
+  display: inline;
+}
+.home-card{
+  max-width:600px;
+  margin: 0 10px;
+  color:black;
+  font-family: 'Barlow Condensed', sans-serif;
+  border:none;
+  border-radius: 5px;
+}
+.card-title{
+  font-size:2.2em;
+}
+.card-text{
+  font-family:sans-serif;
+}
+.card-img-top{
+  max-height:340px;
+  border-radius: 5px;
+
+}
+
+/* Footer */
+#footer{
+  background-color: white;
+  color:black;
+  font-family: nos;
+  text-align: center;
+  padding:40px;
+  margin-top:80px;
+  width:100%;
+}
+#footer p {
+  display: inline;
+  padding: 0 10px;
+  font-size: 1.8em;
+}
+#footer a{
+  color:black;
+  font-size: 1.2em;
+
+}
+.footer-links{
+  margin-top:20px;
 }
