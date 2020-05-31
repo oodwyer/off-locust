@@ -1,0 +1,16 @@
+<%- include("partials/header"); -%>
+
+<h1>Confessionals</h1>
+
+<%  articles.forEach(function(a){ %>
+
+    <h1><%=a.title%></h1>
+    <p>
+    <%=a.content.substring(0, 100) + " ..."%>
+    <a href="/articles/<%=a._id%>">Read More</a>
+    </p>
+
+
+<% }) %>
+
+<%- include("partials/footer"); -%>
