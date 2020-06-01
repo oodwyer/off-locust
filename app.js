@@ -48,7 +48,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 app.get("/", function(req, res) {
-  Article.find(function(err, articles) {
+  Article.find({featured:true},function(err, articles) {
     if (err) {
       console.log("error");
     } else {
@@ -127,7 +127,7 @@ app.get("/author/:authorName", function(req, res) {
       console.log("error");
     } else {
       res.render("author", {
-        authorName: requestedAuthor,
+        authorName: _.toUpper(requestedAuthor),
         articles: articles
         });
     }
@@ -142,7 +142,7 @@ app.get("/articles/:articleID", function(req, res){
     if (!err) {
 
           res.render("article", {
-            title: article.title,
+            title:(article.title),
             id: article._id,
             author: article.author,
             date: article.date,
@@ -171,5 +171,5 @@ app.post("/question", function(req, res) {
 });
 
 app.listen(3000, function() {
-  console.log("Server started on port 3000");
+  // console.log("Server started on port 3000");
 });

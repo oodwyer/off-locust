@@ -1,33 +1,34 @@
-<%- include("partials/header"); -%>
+<%- include("./partials/header"); -%>
 
 <h2 class="section-title">FEATURED</h2>
 
-<div class="container">
+<div id="card" class="container">
   <div class="row">
 
     <%  articles.forEach(function(a){ %>
+      <div class="col col-12 col-md-6">
+        <a href="/articles/<%=a._id%>">
+        <div class="card home-card">
+          <img class="card-img-top" src="images/sample-img.png" alt="Card image cap">
+            <div class="card-body">
 
-
-    <h1><%=a.title%></h1>
+    <a href="/articles/<%=a._id%>"> <h5 class="card-title"> <%=a.title.substring(0, 100)%> </h5> </a>
     <p>
-      <%=a.content.substring(0, 100) + " ..."%>
-      <a href="/articles/<%=a._id%>">Read More</a>
+      <%=a.content.substring(0, 100) + "..."%>
+
     </p>
+  </div>
+</div>
+</a>
+</div>
 
 <% }) %>
 
-    <div class="col col-lg-6  col-sm-12">
-      <a href="/">
-      <div class="card home-card">
-        <img class="card-img-top" src="images/sample-img.png" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">ARTICLE TITLE WRITTEN HERE</h5>
-        </div>
-      </div>
-      </a>
-    </div>
 
-    <div class="col col-lg-6  col-sm-12">
+
+
+
+    <!-- <div class="col col-lg-6  col-sm-12">
       <a href="/">
       <div class="card home-card">
         <img class="card-img-top" src="images/sample-img.png" alt="Card image cap">
@@ -36,7 +37,7 @@
         </div>
       </div>
       </a>
-    </div>
+    </div> -->
 
 
   </div>
@@ -61,4 +62,4 @@
 </div>
 
 
-<%- include("partials/footer"); -%>
+<%- include("./partials/footer"); -%>
