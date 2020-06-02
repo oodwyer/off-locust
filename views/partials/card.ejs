@@ -1,0 +1,19 @@
+
+<div id="card-col" class="col col-12 col-md-6 col-lg-4">
+  <a href="/articles/<%=a._id%>">
+    <div class="card standard-card">
+      <img class="card-img-top" src="/images/sample-img.png" alt="Card image cap">
+      <div class="card-body">
+
+        <a href="/articles/<%=a._id%>">
+          <h5 class="card-title"> <%=a.title.substring(0, 100)%> </h5>
+        </a>
+        <p>
+          <% if (a.subtitle){%>
+              <%=a.subtitle.substring(0, 42) + "..." %>
+          <% } %>
+        </p>
+      </div>
+    </div>
+  </a>
+</div>

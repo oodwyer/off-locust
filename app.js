@@ -15,11 +15,13 @@ mongoose.connect("mongodb+srv://locust-admin:locust@off-locust-tsemd.mongodb.net
 
 const articleSchema = new mongoose.Schema({
   title: String,
+  subtitle:String,
   date: Date,
   author: String,
   content: String,
   section: String,
-  img: { data: Buffer, contentType: String }
+  img: { data: Buffer, contentType: String },
+  featured: Boolean
 });
 
 const Article = mongoose.model("Article", articleSchema);
@@ -140,19 +142,35 @@ app.get("/articles/:articleID", function(req, res){
 
   Article.findOne({_id: requestedID}, function(err, article) {
     if (!err) {
+          // adds the hashtag for the exposed section
+          let curSection = article.section;
+          if(curSection == "exposed"){
+            curSection = "#exposed";
+          }
+          console.log();
 
           res.render("article", {
             title:(article.title),
             id: article._id,
             author: article.author,
             date: article.date,
-            content: article.content
+            content: article.content,
+            section:_.toUpper(curSection),
+            sectionLink: article.section,
+            subtitle: article.subtitle
           });
         }
       });
 
 });
 
+// app.get("/compose", function(req,res){
+//   Article.find(function(err, articles){
+//     if(!err){
+//       res.render("compose", {articles:articles, fArticles:fArticles, sArticles:sArticles});
+//     }
+//   })
+// });
 app.post("/question", function(req, res) {
   //create new question object
   const question = new Question({
