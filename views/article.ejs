@@ -8,7 +8,9 @@
   <div class="row">
     <div class="title-div col col-11">
       <h2 class="art-title"><%=title%> </h2>
-      <h3 class="art-subtitle">The Modern Prometheus and and Why Clare is the Best to Walk the Earth</h3>
+      <% if (subtitle != undefined){ %>
+      <h3 class="art-subtitle"><%=subtitle%></h3>
+      <% } %>
     </div>
   </div>
 </div>
@@ -32,6 +34,15 @@
       </div>
 
       <p><%=content%></p>
+      <br/>
+      <br/>
+      <div class="read-more-div">
+        <a href="/<%=sectionLink%>">
+          <i class="fa fa-arrow-circle-left"></i>
+          <h6>READ MORE <%=section%></h6>
+        </a>
+      </div>
+
     </div>
   </div>
 </div>
