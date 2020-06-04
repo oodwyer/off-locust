@@ -1,21 +1,5 @@
 <%- include("./partials/header"); -%>
-<h2 class="section-title">Admin</h2>
-<form class="compose-art" action="/new-art" method="post">
-  <label>Article Title:</label>
-  <input type="text" name="art-title" value="" placeholder="Title">
-  <br/>
-  <textarea type="text" name="art-content" value="" placeholder="Content" rows="10" cols="100"></textarea>
-  <br/>
-  <button type="button" class="btn btn-secondary" name="button">Add Article</button>
-</form>
-
-<form class="" action="/update-featured" method="post">
-<% articles.forEach({featured:true}, function(err, a){ %>
-  <input type="checkbox" name="" value="">
-  <%= a.title %>
-  <br/>
-<% }) %>
-</form>
+<h2 class="section-title">Compose</h2>
 
 
 <%- include("./partials/footer"); -%>
