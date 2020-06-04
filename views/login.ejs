@@ -1,0 +1,20 @@
+<%- include("./partials/header"); -%>
+
+<h2 class="section-title">LOGIN</h2>
+<h4><%=errorMess%></h4>
+
+<form class="" action="/login" method="post">
+  <input type="text" name="username" value="" placeholder="Username">
+  <input type="password" name="password" value="" placeholder="Password">
+  <button type="submit" name="">Log in</button>
+</form>
+
+<form class="" action="/reset-password" method="post">
+  <input type="text" name="username" value="" placeholder="Username">
+  <input type="password" name="oldPassword" value="" placeholder="Old password">
+  <input type="password" name="newPassword" value="" placeholder="New password">
+  <input type="password" name="newPassword2" value="" placeholder="Confirm new password">
+  <button type="submit" name="">Reset</button>
+</form>
+
+<%- include("partials/footer"); -%>
