@@ -11,33 +11,19 @@
     <input type="text" name="author" placeholder="Author"><br />
     <input type="text" name="image" placeholder="Image Link"><br />
 
-    <!-- <input type="text" name="section" placeholder="Section"><br />
 
-    <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Section
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">#exposed</a>
-    <a class="dropdown-item" href="#">Confessionals</a>
-    <a class="dropdown-item" href="#">Avant Garde</a>
-    <a class="dropdown-item" href="#">After Hours</a>
-    <a class="dropdown-item" href="#">Ask Off Locust</a>
-
-  </div> -->
 
   <select id="section" name="section">
-  <option value="exposed">#exposed</option>
-  <option value="confessionals">Confessionals</option>
-  <option value="avant-garde">Avant Garde</option>
-  <option value="after-hours">After Hours</option>
-  <option value="ask-off-locust">Ask Off Locust</option>
-</select>
-</div>
+    <option value="exposed">#Exposed</option>
+    <option value="confessionals">Confessionals</option>
+    <option value="avant-garde">Avant-Garde</option>
+    <option value="after-hours">After Hours</option>
+    <option value="ask-off-locust">Ask Off Locust</option>
+  </select>
 
     <input type="checkbox" name="featured">Featured?<br />
-
     <textarea type="text" name="content" rows=4 cols=80 placeholder="Content"></textarea> <br />
+    <br />
     <button type="submit" name="button" class="btn btn-secondary">Publish</button>
   </form>
 
@@ -49,9 +35,32 @@
     <input type="checkbox" name="<%= article._id %>" <%=checked%> >
     <%= article.title %>, <%= article.date %> <br />
     <% }) %>
+    <br />
 
     <button type="submit" name="button" class="btn btn-secondary">Update</button>
   </form>
+
+  <form class="" action="/compose-delete" method="post">
+    <h3>Delete Article(s)</h3>
+
+    <% articles.forEach(function(article){ %>
+    <input type="checkbox" name="<%= article._id %>" >
+    <%= article.title %>, <%= article.date %> <br />
+    <% }) %>
+    <br />
+    <button type="submit" name="button" class="btn btn-secondary">Delete Selected</button>
+  </form>
+
+  <form class="" action="/compose-edit" method="post">
+    <h3>Edit Article</h3>
+
+    <% articles.forEach(function(article){ %>
+    <button type="submit" id="<%= article._id %>" name="<%= article._id %>" class=""></button>
+    <%= article.title %>, <%= article.date %> <br />
+    <% }) %>
+    <br />
+  </form>
+
 </div>
 
 

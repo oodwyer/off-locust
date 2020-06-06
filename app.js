@@ -63,7 +63,6 @@ app.get("/login", function(req, res){
 });
 
 app.get("/", function(req, res) {
-  // console.log(date);
   Article.find({featured:true},function(err, articles) {
     if (err) {
       console.log("error");
@@ -161,16 +160,9 @@ app.get("/articles/:articleID", function(req, res){
           if(curSection == "exposed"){
             curSection = "#exposed";
           }
-
           res.render("article", {
-            title:(article.title),
-            id: article._id,
-            author: article.author,
-            date: article.date,
-            content: article.content,
-            section:_.toUpper(curSection),
-            sectionLink: article.section,
-            subtitle: article.subtitle
+            article:article,
+            sectionAp:_.toUpper(curSection)
           });
         }
       });
@@ -333,12 +325,38 @@ app.post("/compose-featured", function(req,res){
         }
       })
     }
-  })
-  res.redirect("/")
+  });
+  res.redirect("/");
+});
+
+app.post("/compose-delete", function(req,res){
+  Article.find(function(err,articles){
+    if(err){
+      console.log(err);
+    } else {
+      articles.forEach(function(article){
+        let checkbox = req.body[article._id];
+        if(checkbox){ //if this article is checked
+          Article.deleteOne({_id:article._id}, function(err){
+            err ? console.log(err) : null;
+          });
+        }
+        })
+    }
+  });
+  res.redirect("/");
+});
+
+app.post("/compose-edit", function(req,res){
+  const articleId = req.body.id;
+  console.log(articleId);
 });
 
 
-
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+app.listen(3000, function(err) {
+  if(err){
+    console.log(err);
+  } else {
+    console.log("Server started on port 3000");
+  }
 });
