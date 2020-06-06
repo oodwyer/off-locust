@@ -19,6 +19,7 @@ const articleSchema = new mongoose.Schema({
   author: String,
   content: String,
   section: String,
+  featured: Boolean,
   img: { data: Buffer, contentType: String }
 });
 
