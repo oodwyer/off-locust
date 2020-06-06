@@ -18,8 +18,9 @@
   <form class="" action="/compose-featured" method="post">
     <h3>Select Featured Articles</h3>
 
-    <% fArticles.forEach(function(article){ %>
-    <input type="checkbox" name="<%= article._id %>" value="" checked>
+    <% articles.forEach(function(article){ %>
+      <% let checked = article.featured? "checked" : "";%>
+    <input type="checkbox" name="<%= article._id %>" value="" <%=checked%> >
     <%= article.title %>, <%= article.date %> <br />
 
     <% }) %>
