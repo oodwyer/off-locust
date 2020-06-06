@@ -15,12 +15,13 @@ p {
    font-size: 1.5em;
 }
 
+
 /* Navbar  */
 #navbar{
   padding-top:10px;
   color:black;
   background-color: white;
-  margin-bottom: 60px;
+  /* margin-bottom: 60px; */
 }
 #navbar-logo{
   width:80px;
@@ -44,11 +45,13 @@ p {
   text-align: center;
   font-family: 'Barlow Condensed', sans-serif;
   font-size:3em;
+  margin-top:60px;
 }
 
 /* Home cards */
-.container{
+#featured-row{
   margin-bottom: 100px;
+  margin-top:40px;
 }
 .row .home-card{
   max-width:600px;
@@ -69,24 +72,140 @@ p {
   border-radius: 5px 5px 0 0;
 
 }
-.row .col{
+#featured-row .row .col{
   padding:40px;
 }
 .card-body{
   padding-bottom: 5px;
-  background-color:#d1d1d1;
+  background-color:#e3e3e3;
   border-radius:0 0 5px 5px;
-  min-height:125px;
+  height:125px;
 }
-/* .a{
+a h5{
+  color:black;
+}
+.card-body a:hover{
   text-decoration-color: black;
-
-} */
+}
 
 /* Home - about */
 #about-img{
   max-width:300px;
 }
+#about-container{
+  margin-top:50px;
+}
+
+/* Ask Off Locust */
+#ask-form{
+  margin:auto;
+}
+#ask-form h3{
+  padding:15px;
+}
+.btn-red{
+  border:2px solid #c91d14;
+  color: #c91d14;
+  margin:15px 5px;
+}
+#ask-form .btn :hover{
+  background-color: #c91d14;
+  color:white;
+}
+
+/* Article page */
+.art-img-container{
+  margin-top:0;
+}
+.art-img{
+  width:100%;
+  max-height:500px;
+  object-fit: cover;
+}
+.art-body{
+  margin:0 auto;
+}
+.author-div{
+  margin: auto;
+  width:100%;
+  text-align: center;
+  min-height:70px;
+  padding-top:0px;
+  padding-bottom:20px;
+
+}
+.author-div a{
+  text-decoration: underline;
+  color:white;
+  transition:color .1s ease-out;
+}
+.author-div a:hover{
+  color: #c91d14;
+}
+.author-div h3{
+  font-style: italic;
+  font-family: 'CMUSerifRoman', serif;
+  display: inline;
+  font-size: 1.5em;
+}
+.author-div p{
+  display: inline;
+  font-size: 1em;
+}
+.author-div .col{
+  padding:0;
+}
+.row .art-author{
+  text-align: right;
+  padding-top: 13px;
+}
+.row .art-date{
+  text-align: left;
+  padding-top: 13px;
+}
+#art-title-container{
+  padding-bottom:60px;
+}
+.title-div{
+  text-align: center;
+  margin:auto;
+}
+.art-subtitle{
+  font-size: 2em;
+  font-family: 'CMUSerifRoman', serif;
+  padding-top:10px;
+}
+.art-title{
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size:3.2em;
+  margin-top:70px;
+}
+.art-body p{
+  font-size: 1.45em;
+}
+.art-body a{
+  color:white;
+  text-align: left;
+}
+.read-more-div h6{
+  font-size: 1.35em;
+  display:inline;
+  transition:color .1s ease-out;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+.read-more-div i{
+  font-size: 1.35em;
+
+  display:inline;
+  transition:color .1s ease-out;
+  padding: 10px;
+}
+
+.read-more-div a:hover{
+  text-decoration: none;
+  color: #c91d14;
+}
+
 
 /* Footer */
 #footer{
@@ -119,4 +238,29 @@ p {
 }
 #footer .fa:hover{
   color:#c91d14;
+}
+
+/* Standard cards */
+#card-col{
+
+}
+#card-row{
+  margin:auto;
+  padding-top: 60px;
+}
+.row .standard-card{
+  max-width:600px;
+  /* margin: 0 10px; */
+  color:black;
+  font-family: 'Barlow Condensed', sans-serif;
+  border:none;
+  border-radius: 7px;
+}
+
+/* Compose page */
+#compose{
+  margin:auto 10%;
+}
+#compose form{
+  margin-top:50px;
 }

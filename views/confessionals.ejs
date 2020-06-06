@@ -2,15 +2,14 @@
 
 <h2 class="section-title">CONFESSIONALS</h2>
 
-<%  articles.forEach(function(a){ %>
+<div id="featured-row" class="container">
+  <div class="row">
 
-    <h1><%=a.title%></h1>
-    <p>
-    <%=a.content.substring(0, 100) + " ..."%>
-    <a href="/articles/<%=a._id%>">Read More</a>
-    </p>
+    <%  articles.forEach(function(a){ %>
+        <%- include("./partials/card", {articles:articles, a:a}); %>
+    <% }) %>
 
-
-<% }) %>
+  </div>
+</div>
 
 <%- include("partials/footer"); -%>

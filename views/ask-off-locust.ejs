@@ -1,14 +1,21 @@
 <%- include("partials/header"); -%>
 
-<h1>Ask Off Locust</h1>
+<h2 class="section-title">Ask Off Locust</h2>
 
 <br>
+<div class="container">
+  <div class="row">
+    <div id="ask-form" class="col col-lg-7 col-md-9 col-sm-11 col-xs11">
 
-<form action="/question" method="post">
-  <h2>Question for us?</h2>
-  <textarea class="form-control" name="qBody" rows="3" cols="15"></textarea>
-  <button type="submit" name="button">Submit your question</button>
+
+<form action="/question" method="post" >
+  <h3>Question for us?</h3>
+  <textarea class="form-control" name="qBody" rows="5" cols="15" placeholder="Contact us here..."></textarea>
+  <button type="submit" name="button" class="btn btn-red">Submit your question</button>
 </form>
+</div>
+</div>
+</div>
 
 <%  articles.forEach(function(a){ %>
 
