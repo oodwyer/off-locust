@@ -31,7 +31,7 @@ const articleSchema = new mongoose.Schema({
   content: String,
   section: String,
   featured: Boolean,
-  img: { data: Buffer, contentType: String }
+  img: String
 
 });
 const Article = mongoose.model("Article", articleSchema);
@@ -289,10 +289,11 @@ app.post("/compose-article", function(req,res,){
   let title= req.body.title;
   let author= req.body.author;
   let section= req.body.section;
-  let featured= req.body.featured.checked;
+  let featured= req.body.featured === "on" ? true : false;
   let content= req.body.content;
   let subtitle = req.body.subtitle;
-  // console.log("FEATURED: " + featured);
+  let image = req.body.image;
+  // console.log("FEATURED: " + req.body.featured.checked);
 
   const newArticle = new Article ({
     title:title,
@@ -300,7 +301,8 @@ app.post("/compose-article", function(req,res,){
     author:author,
     section:section,
     featured:featured,
-    content:content
+    content:content,
+    img: image
     //date
   });
   newArticle.save(function(err){
@@ -316,7 +318,7 @@ app.post("/compose-featured", function(req,res){
     if(err){
       console.log(err);
     } else {
-      articles.forEach(function())
+      // articles.forEach(function())
     }
   })
 });

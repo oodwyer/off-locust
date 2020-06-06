@@ -2,7 +2,8 @@
 <div class="col col-12 col-lg-6">
   <a href="/articles/<%=a._id%>">
     <div class="card home-card">
-      <img class="card-img-top" src="images/sample-img.png" alt="Card image cap">
+      <% let link = a.img ? a.img : "/images/sample-img.png"; %>
+      <img class="card-img-top" src="<%=link%>" alt="Card image cap">
       <div class="card-body">
 
         <a href="/articles/<%=a._id%>">

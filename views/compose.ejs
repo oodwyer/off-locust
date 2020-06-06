@@ -6,12 +6,38 @@
 
   <form class="" action="/compose-article" method="post">
     <h3>New Article</h3>
-    <input type="text" name="title" value="" placeholder="Title"><br />
-    <input type="text" name="subtitle" value="" placeholder="Subtitle"><br />
-    <input type="text" name="author" value="" placeholder="Author"><br />
-    <input type="text" name="section" value="" placeholder="Section"><br />
-    <input type="checkbox" name="featured" value="">Featured?<br />
-    <textarea type="text" name="content" value="" rows=4 cols=80 placeholder="Content"></textarea> <br />
+    <input type="text" name="title" placeholder="Title"><br />
+    <input type="text" name="subtitle" placeholder="Subtitle"><br />
+    <input type="text" name="author" placeholder="Author"><br />
+    <input type="text" name="image" placeholder="Image Link"><br />
+
+    <!-- <input type="text" name="section" placeholder="Section"><br />
+
+    <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Section
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">#exposed</a>
+    <a class="dropdown-item" href="#">Confessionals</a>
+    <a class="dropdown-item" href="#">Avant Garde</a>
+    <a class="dropdown-item" href="#">After Hours</a>
+    <a class="dropdown-item" href="#">Ask Off Locust</a>
+
+  </div> -->
+
+  <select id="section" name="section">
+  <option value="exposed">#exposed</option>
+  <option value="confessionals">Confessionals</option>
+  <option value="avant-garde">Avant Garde</option>
+  <option value="after-hours">After Hours</option>
+  <option value="ask-off-locust">Ask Off Locust</option>
+</select>
+</div>
+
+    <input type="checkbox" name="featured">Featured?<br />
+
+    <textarea type="text" name="content" rows=4 cols=80 placeholder="Content"></textarea> <br />
     <button type="submit" name="button" class="btn btn-secondary">Publish</button>
   </form>
 
