@@ -63,7 +63,7 @@ app.get("/login", function(req, res){
 });
 
 app.get("/", function(req, res) {
-  console.log(date);
+  // console.log(date);
   Article.find({featured:true},function(err, articles) {
     if (err) {
       console.log("error");
@@ -304,7 +304,7 @@ app.post("/compose-article", function(req,res,){
     featured:featured,
     content:content,
     img: image
-    date: new Date()
+    // date: new Date()
     //date
   });
   newArticle.save(function(err){
