@@ -195,8 +195,6 @@ app.post("/question", function(req, res) {
 
 app.post("/login", function(req, res){
 var articleArray;
-var featuredArray;
-
 
   const enteredPassword = req.body.password;
   //looks for user with matching username
@@ -215,22 +213,15 @@ var featuredArray;
           } else {
             if(result){ //password was correct: successful authentication!
 
-              Article.find({featured : !true}, function(err,articles){
+              Article.find(function(err,articles){
                 if(err){
                   console.log(err);
                 } else {
                   articleArray = articles;
-                  Article.find({featured:true}, function(err, fArticles){
-                    if(err){
-                      console.log(err);
-                    } else {
-                      featuredArray = fArticles;
-                      res.render("compose", {articles:articleArray, fArticles:featuredArray, errM:""});
-
-                    }
-                  });
+                    res.render("compose", {articles:articleArray, errM:""});
+                  };
                 }
-              });
+              );
             } else { //password was incorrect
               res.render("login", {errorMess:"Incorrect username or password. Please try again."});
             }
@@ -318,6 +309,16 @@ app.post("/compose-article", function(req,res,){
     }
   });
   res.redirect("/");
+});
+
+app.post("/compose-featured", function(req,res){
+  Article.find(function(err,articles){
+    if(err){
+      console.log(err);
+    } else {
+      articles.forEach(function())
+    }
+  })
 });
 
 
