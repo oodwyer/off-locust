@@ -95,6 +95,13 @@ a h5{
 #about-container{
   margin-top:50px;
 }
+#about-container .col {
+  margin-bottom:50px;
+  padding-right: 35px;
+  padding-left: 35px;
+
+}
+
 
 /* Ask Off Locust */
 #ask-form{

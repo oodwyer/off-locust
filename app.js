@@ -63,13 +63,14 @@ app.get("/login", function(req, res){
 });
 
 app.get("/", function(req, res) {
+  console.log(date);
   Article.find({featured:true},function(err, articles) {
     if (err) {
       console.log("error");
     } else {
       res.render("home", {
         articles: articles
-        });
+      });
     }
   });
 });
@@ -303,6 +304,7 @@ app.post("/compose-article", function(req,res,){
     featured:featured,
     content:content,
     img: image
+    date: new Date()
     //date
   });
   newArticle.save(function(err){
@@ -318,9 +320,21 @@ app.post("/compose-featured", function(req,res){
     if(err){
       console.log(err);
     } else {
-      // articles.forEach(function())
+      articles.forEach(function(article){
+        let checkbox = req.body[article._id];
+        if(checkbox){ //if this article is checked
+          Article.updateOne({_id:article._id}, {featured:true}, function(err){
+            err ? console.log(err) : null;
+          });
+        } else {
+          Article.updateOne({_id:article._id}, {featured:false}, function(err){
+            err ? console.log(err) : null;
+          });
+        }
+      })
     }
   })
+  res.redirect("/")
 });
 
 
