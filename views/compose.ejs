@@ -1,5 +1,37 @@
 <%- include("./partials/header"); -%>
-<h2 class="section-title">Compose</h2>
+<div id="compose">
+
+  <h2 class="section-title">Compose</h2>
+
+
+  <form class="" action="/compose-article" method="post">
+    <h3>New Article</h3>
+    <input type="text" name="title" value="" placeholder="Title"><br />
+    <input type="text" name="subtitle" value="" placeholder="Subtitle"><br />
+    <input type="text" name="author" value="" placeholder="Author"><br />
+    <input type="text" name="section" value="" placeholder="Section"><br />
+    <input type="checkbox" name="featured" value="">Featured?<br />
+    <textarea type="text" name="content" value="" rows=4 cols=80 placeholder="Content"></textarea> <br />
+    <button type="submit" name="button" class="btn btn-secondary">Publish</button>
+  </form>
+
+  <form class="" action="/compose-featured" method="post">
+    <h3>Select Featured Articles</h3>
+
+    <% fArticles.forEach(function(article){ %>
+    <input type="checkbox" name="<%= article._id %>" value="" checked>
+    <%= article.title %>, <%= article.date %> <br />
+
+    <% }) %>
+
+    <% articles.forEach(function(article){ %>
+    <input type="checkbox" name="<%= article._id %>" value="">
+    <%= article.title %>, <%= article.date %> <br />
+
+    <% }) %>
+    <button type="submit" name="button" class="btn btn-secondary">Update</button>
+  </form>
+</div>
 
 
 <%- include("./partials/footer"); -%>
