@@ -20,16 +20,10 @@
 
     <% articles.forEach(function(article){ %>
       <% let checked = article.featured? "checked" : "";%>
-    <input type="checkbox" name="<%= article._id %>" value="" <%=checked%> >
+    <input type="checkbox" name="<%= article._id %>" <%=checked%> >
     <%= article.title %>, <%= article.date %> <br />
-
     <% }) %>
 
-    <% articles.forEach(function(article){ %>
-    <input type="checkbox" name="<%= article._id %>" value="">
-    <%= article.title %>, <%= article.date %> <br />
-
-    <% }) %>
     <button type="submit" name="button" class="btn btn-secondary">Update</button>
   </form>
 </div>
