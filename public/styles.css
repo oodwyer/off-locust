@@ -103,12 +103,14 @@ a h5{
 #ask-form h3{
   padding:15px;
 }
+
 .btn-red{
   border:2px solid #c91d14;
   color: #c91d14;
   margin:15px 5px;
 }
-#ask-form .btn :hover{
+
+#ask-form .btn:hover{
   background-color: #c91d14;
   color:white;
 }

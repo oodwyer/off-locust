@@ -30,9 +30,13 @@ const articleSchema = new mongoose.Schema({
   author: String,
   content: String,
   section: String,
+<<<<<<< HEAD
   featured: Boolean,
   img: { data: Buffer, contentType: String }
-
+=======
+  img: { data: Buffer, contentType: String },
+  featured: Boolean
+>>>>>>> 6b77a28095ec0961dd8e118ce8102540dca4b71e
 });
 const Article = mongoose.model("Article", articleSchema);
 
@@ -323,5 +327,5 @@ app.post("/compose-article", function(req,res,){
 
 
 app.listen(3000, function() {
-  console.log("Server started on port 3000");
+  // console.log("Server started on port 3000");
 });
