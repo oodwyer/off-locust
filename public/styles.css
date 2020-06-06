@@ -256,3 +256,11 @@ a h5{
   border:none;
   border-radius: 7px;
 }
+
+/* Compose page */
+#compose{
+  margin:auto 10%;
+}
+#compose form{
+  margin-top:50px;
+}

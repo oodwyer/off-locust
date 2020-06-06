@@ -16,7 +16,7 @@ const mongoose = require("mongoose");
 //mongo db connection
 mongoose.connect("mongodb+srv://locust-admin:locust@off-locust-tsemd.mongodb.net/locustDB", {useNewUrlParser: true, useUnifiedTopology: true});
 
-//Model for users, currently is stuck at just the one admin user
+//Model for users, currently has just the one admin user
 const userSchema = new mongoose.Schema({
   username:String,
   password:String
@@ -159,7 +159,6 @@ app.get("/articles/:articleID", function(req, res){
           if(curSection == "exposed"){
             curSection = "#exposed";
           }
-          console.log();
 
           res.render("article", {
             title:(article.title),
@@ -194,8 +193,11 @@ app.post("/question", function(req, res) {
 });
 
 app.post("/login", function(req, res){
-  const enteredPassword = req.body.password;
+var articleArray;
+var featuredArray;
 
+
+  const enteredPassword = req.body.password;
   //looks for user with matching username
   User.findOne({username:req.body.username}, function(err, foundUser){
     if(err){
@@ -211,7 +213,23 @@ app.post("/login", function(req, res){
             res.render("login", {errorMess:"An error occured. Please try again."});
           } else {
             if(result){ //password was correct: successful authentication!
-              res.render("compose");
+
+              Article.find({featured : !true}, function(err,articles){
+                if(err){
+                  console.log(err);
+                } else {
+                  articleArray = articles;
+                  Article.find({featured:true}, function(err, fArticles){
+                    if(err){
+                      console.log(err);
+                    } else {
+                      featuredArray = fArticles;
+                      res.render("compose", {articles:articleArray, fArticles:featuredArray, errM:""});
+
+                    }
+                  });
+                }
+              });
             } else { //password was incorrect
               res.render("login", {errorMess:"Incorrect username or password. Please try again."});
             }
@@ -274,6 +292,33 @@ const newPassword2 = req.body.newPassword2;
     }
   });
 });
+
+app.post("/compose-article", function(req,res,){
+  let title= req.body.title;
+  let author= req.body.author;
+  let section= req.body.section;
+  let featured= req.body.featured.checked;
+  let content= req.body.content;
+  let subtitle = req.body.subtitle;
+  // console.log("FEATURED: " + featured);
+
+  const newArticle = new Article ({
+    title:title,
+    subtitle:subtitle,
+    author:author,
+    section:section,
+    featured:featured,
+    content:content
+    //date
+  });
+  newArticle.save(function(err){
+    if(err){
+      console.log(err);
+    }
+  });
+  res.redirect("/");
+});
+
 
 
 app.listen(3000, function() {
