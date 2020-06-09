@@ -29,11 +29,14 @@
         </div>
         <!-- </div> -->
         <div class="col col-12 col-md-5 col-lg-5  art-date">
-          <h3><%= article.date%></h3>
+          <h3>5 June 2020</h3>
         </div>
       </div>
 
-      <p><%=article.content%></p>
+      <% var paragraphs = article.content.split("###"); %>
+      <% paragraphs.forEach(function(p) { %>
+        <p> <%= p%>  <br/>
+      <% }) %> </p>
       <br/>
       <br/>
       <div class="read-more-div">
