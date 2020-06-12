@@ -3,17 +3,26 @@
   font-family:nos;
 }
 
-body{
-  background-color: black;
+#main{
+  background-color: rgb(20, 20, 20);
   color:white;
+  /* font-family: 'Barlow Condensed', sans-serif; */
+  font-family: nos;
 }
 
 p {
-   font-family: 'CMUSerifRoman', serif;
+   /* font-family: 'CMUSerifRoman', serif; */
    font-weight: normal;
    font-style: normal;
    font-size: 1.5em;
 }
+
+input, select, textarea{
+  font-family:sans-serif;
+}
+/* form p{
+  font-family:sans-serif;
+} */
 
 
 /* Navbar  */
@@ -28,7 +37,7 @@ p {
 
 }
 #navbar .nav-link{
-  font-family: nos;
+  /* font-family: nos; */
   font-size:1.5em;
   padding-right:30px;
   transition:color .15s ease-out;
@@ -43,7 +52,7 @@ p {
 /* Home */
 .section-title{
   text-align: center;
-  font-family: 'Barlow Condensed', sans-serif;
+  /* font-family: 'Barlow Condensed', sans-serif; */
   font-size:3em;
   margin-top:60px;
 }
@@ -57,7 +66,7 @@ p {
   max-width:600px;
   /* margin: 0 10px; */
   color:black;
-  font-family: 'Barlow Condensed', sans-serif;
+  /* font-family: 'Barlow Condensed', sans-serif; */
   border:none;
   border-radius: 7px;
 }
@@ -65,7 +74,7 @@ p {
   font-size:2.2em;
 }
 .card-text{
-  font-family:sans-serif;
+  /* font-family:sans-serif; */
 }
 .card-img-top{
   max-height:340px;
@@ -153,7 +162,7 @@ a h5{
 }
 .author-div h3{
   font-style: italic;
-  font-family: 'CMUSerifRoman', serif;
+  /* font-family: 'CMUSerifRoman', serif; */
   display: inline;
   font-size: 1.5em;
 }
@@ -181,11 +190,11 @@ a h5{
 }
 .art-subtitle{
   font-size: 2em;
-  font-family: 'CMUSerifRoman', serif;
+  /* font-family: 'CMUSerifRoman', serif; */
   padding-top:10px;
 }
 .art-title{
-  font-family: 'Barlow Condensed', sans-serif;
+  /* font-family: 'Barlow Condensed', sans-serif; */
   font-size:3.2em;
   margin-top:70px;
 }
@@ -200,7 +209,7 @@ a h5{
   font-size: 1.35em;
   display:inline;
   transition:color .1s ease-out;
-  font-family: 'Barlow Condensed', sans-serif;
+  /* font-family: 'Barlow Condensed', sans-serif; */
 }
 .read-more-div i{
   font-size: 1.35em;
@@ -220,7 +229,7 @@ a h5{
 #footer{
   background-color: white;
   color:black;
-  font-family: nos;
+  /* font-family: nos; */
   text-align: center;
   padding:40px;
   margin-top:80px;
@@ -261,7 +270,7 @@ a h5{
   max-width:600px;
   /* margin: 0 10px; */
   color:black;
-  font-family: 'Barlow Condensed', sans-serif;
+  /* font-family: 'Barlow Condensed', sans-serif; */
   border:none;
   border-radius: 7px;
   margin-bottom:35px;
@@ -273,4 +282,25 @@ a h5{
 }
 #compose form{
   margin-top:50px;
+  margin-bottom:50px;
+
+}
+#compose-form input{
+  margin-bottom: 10px;
+  font-family:sans-serif;
+}
+/* Edit Article page */
+#edit-container .col{
+  margin-bottom:27px;
+  margin-right:0;
+}
+#edit-container{
+  margin-top:50px;
+}
+#edit-container form{
+  display: contents;
+}
+#compose .edit-form{
+  margin-top:2px;
+  margin-bottom:0;
 }
