@@ -213,13 +213,17 @@ var articleArray;
                   console.log(err);
                 } else {
                   articleArray = articles;
-                    res.render("compose", {
-                      articles:articleArray,
-                      errM:"",
-                    });
-                  };
+
+                  Question.find(function(err, questions) {
+                    if (err) {
+                      console.log("error");
+                    } else {
+                      res.render("compose", {articles:articleArray, questions: questions, errM:""});
+                    }
+                  });
+
                 }
-              );
+              });
             } else { //password was incorrect
               res.render("login", {errorMess:"Incorrect username or password. Please try again."});
             }
