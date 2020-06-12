@@ -4,24 +4,39 @@
   <h2 class="section-title">Compose</h2>
 
 
-  <form class="" action="/compose-article" method="post">
+  <form id="compose-form" action="/compose-article" method="post">
     <h3>New Article</h3>
-    <input type="text" name="title" placeholder="Title"><br />
-    <input type="text" name="subtitle" placeholder="Subtitle"><br />
-    <input type="text" name="author" placeholder="Author"><br />
-    <input type="text" name="image" placeholder="Image Link"><br />
+    <input type="text" name="title" placeholder="Title" size=80><br />
+    <input type="text" name="subtitle" placeholder="Subtitle" size=80><br />
+    <input type="text" name="author" placeholder="Author" size=80><br />
+    <input type="text" name="image" placeholder="Image Link" size=80><br />
+    <!-- <select id="month" name="month">
+      <option value="1" >January</option>
+      <option value="2" >February </option>
+      <option value="3" >March</option>
+      <option value="4" >April</option>
+      <option value="5" >May</option>
+      <option value="6" >June </option>
+      <option value="7" >July </option>
+      <option value="8" >August </option>
+      <option value="9" >September </option>
+      <option value="10" >October </option>
+      <option value="11" >November </option>
+      <option value="12" >December </option>
+    </select>
+    <input type="number" name="day" value="" placeholder="Day">
+    <input type="number" name="year" value="" placeholder="Year"> <br /> -->
+    <input type="date" name="date" value=""><br />
+    <select id="section" name="section">
+      <option value="exposed">#Exposed</option>
+      <option value="confessionals">Confessionals</option>
+      <option value="avant-garde">Avant-Garde</option>
+      <option value="after-hours">After Hours</option>
+      <option value="ask-off-locust">Ask Off Locust</option>
+    </select>
+    <br /><br />
 
-
-
-  <select id="section" name="section">
-    <option value="exposed">#Exposed</option>
-    <option value="confessionals">Confessionals</option>
-    <option value="avant-garde">Avant-Garde</option>
-    <option value="after-hours">After Hours</option>
-    <option value="ask-off-locust">Ask Off Locust</option>
-  </select>
-
-    <input type="checkbox" name="featured">Featured?<br />
+    <input type="checkbox" name="featured">Featured?<br /><br />
     <textarea type="text" name="content" rows=4 cols=80 placeholder="Content"></textarea> <br />
     <br />
     <button type="submit" name="button" class="btn btn-secondary">Publish</button>
@@ -33,7 +48,7 @@
     <% articles.forEach(function(article){ %>
       <% let checked = article.featured? "checked" : "";%>
     <input type="checkbox" name="<%= article._id %>" <%=checked%> >
-    <%= article.title %>, <%= article.date %> <br />
+    <%= article.title %>, <%= article.dateString %> <br />
     <% }) %>
     <br />
 
@@ -45,21 +60,23 @@
 
     <% articles.forEach(function(article){ %>
     <input type="checkbox" name="<%= article._id %>" >
-    <%= article.title %>, <%= article.date %> <br />
+    <%= article.title %>, <%= article.dateString %> <br />
     <% }) %>
     <br />
     <button type="submit" name="button" class="btn btn-secondary">Delete Selected</button>
   </form>
 
-  <form class="" action="/compose-edit" method="post">
     <h3>Edit Article</h3>
 
     <% articles.forEach(function(article){ %>
-    <button type="submit" id="<%= article._id %>" name="<%= article._id %>" class=""></button>
-    <%= article.title %>, <%= article.date %> <br />
+    <form class="edit-form" action="/compose-edit" method="post">
+      <input type="hidden" name="articleId" value="<%=article._id%>">
+      <button type="submit" class="btn btn-secondary"></button>
+      <%= article.title %>, <%= article.dateString %> <br />
+    </form>
+
     <% }) %>
     <br />
-  </form>
 
 </div>
 
