@@ -334,7 +334,7 @@ app.post("/compose-featured", function(req,res){
   res.redirect("/");
 });
 
-app.post("/compose-delete", function(req,res){
+app.post("/compose-delete", function(req,res) {
   Article.find(function(err,articles){
     if(err){
       console.log(err);
