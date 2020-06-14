@@ -4,8 +4,10 @@
 }
 
 #main{
-  background-color: rgb(20, 20, 20);
-  color:white;
+  /* background-color: rgb(20, 20, 20); */
+  /* background-color: #262626; */
+  background-color: white;
+  color:#262626;
   /* font-family: 'Barlow Condensed', sans-serif; */
   font-family: nos;
 }
@@ -15,6 +17,12 @@ p {
    font-weight: normal;
    font-style: normal;
    font-size: 1.5em;
+}
+
+#about-container ul {
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.5em;
 }
 
 input, select, textarea{
@@ -28,20 +36,30 @@ input, select, textarea{
 /* Navbar  */
 #navbar{
   padding-top:10px;
-  color:black;
-  background-color: white;
+  /* color:black; */
+  /* background-color: white; */
+  background-color: #262626;
+  color: white;
   /* margin-bottom: 60px; */
 }
 #navbar-logo{
   width:80px;
 
 }
+
+#navbar .navbar-brand {
+  color: white;
+}
+
+/* .nav-link {
+  color: white;
+} */
 #navbar .nav-link{
   /* font-family: nos; */
   font-size:1.5em;
   padding-right:30px;
   transition:color .15s ease-out;
-
+  color: white;
 }
 #navbar .nav-link:hover{
   color:#c91d14;
@@ -227,8 +245,10 @@ a h5{
 
 /* Footer */
 #footer{
-  background-color: white;
-  color:black;
+  /* background-color: white;
+  color:black; */
+  background-color: #262626;
+  color: white;
   /* font-family: nos; */
   text-align: center;
   padding:40px;
@@ -241,7 +261,8 @@ a h5{
   font-size: 1.8em;
 }
 #footer a{
-  color:black;
+  /* color:black; */
+  color: white;
   font-size: 1.2em;
 
 }
