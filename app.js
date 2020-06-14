@@ -290,7 +290,7 @@ const newPassword2 = req.body.newPassword2;
 app.post("/compose-article", function(req,res,){
   let title= req.body.title;
   let author= req.body.author;
-  let section= req.body.section[1];
+  let section= req.body.section;
   let featured= req.body.featured === "on" ? true : false;
   let content= req.body.content;
   let subtitle = req.body.subtitle;
@@ -363,12 +363,16 @@ app.post("/compose-edit", function(req,res){
       console.log(err);
     } else{
       let curSection = article.section;
-      let m = article.date.getMonth();
-      let d = article.date.getDate();
-      let y = article.date.getFullYear();
-      d < 10 ? d = "0"+d : d=d
-      m < 10 ? m = "0"+m : m=m
-      let inputDate = y+"-"+m+"-"+d;
+      let inputDate= "";
+      if(article.date){
+        let m = article.date.getMonth();
+        let d = article.date.getDate();
+        let y = article.date.getFullYear();
+        d < 10 ? d = "0"+d : d=d
+        m < 10 ? m = "0"+m : m=m
+        inputDate = y+"-"+m+"-"+d;
+      }
+
       res.render("edit-article", {article:article, sectionAp: _.startCase(curSection), inputDate:inputDate});
     }
 

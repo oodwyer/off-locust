@@ -4,7 +4,7 @@
 
 <div id="featured-row" class="container">
   <div class="row">
-
+    <% articles.reverse()%>
     <%  articles.forEach(function(a){ %>
     <%- include("./partials/featured-card", {articles:articles, a:a}); %>
     <% }) %>
