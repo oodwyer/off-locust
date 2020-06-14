@@ -1,9 +1,68 @@
 <%- include("./partials/header"); -%>
 <h2 class="section-title">Edit Article</h2>
+<div id="edit-container"class="container">
+  <div class="row">
+    <form class="" action="/edit-article" method="post">
+      <input type="hidden" name="articleId" value=<%=article._id%>>
+      <div class="col col-1">
+        <label>Title: </label>
+      </div>
+      <div class="col col-11">
+        <input type="text" name="title" value="<%=article.title%>" size=100>
+      </div>
 
-<form class="" action="/edit-article" method="post">
+      <div class="col col-1">
+        <label>Subtitle: </label>
+      </div>
+      <div class="col col-11">
+        <input type="text" name="subtitle" value="<%=article.subtitle%>"size=100>
+      </div>
 
-<button type="submit" name="button" class="btn btn-red"></button>
-</form>
+      <div class="col col-1">
+        <label>Author: </label>
+      </div>
+      <div class="col col-11">
+        <input type="text" name="author" value="<%=article.author%>"size=100>
+      </div>
+
+      <div class="col col-1">
+        <label>Image: </label>
+      </div>
+      <div class="col col-11">
+        <input type="text" name="img" value="<%=article.img%>"size=100>
+      </div>
+
+      <div class="col col-1">
+        <label>Date: </label>
+      </div>
+      <div class="col col-11">
+        <input type="date" name="date" value="<%=inputDate%>"><br />
+      </div>
+
+      <div class="col col-1">
+        <label>Section: </label>
+      </div>
+      <div class="col col-11">
+        <select name="section">
+          <option value=<%=article.section%>  ><%=sectionAp%></option>
+          <option value="exposed"  >#Exposed</option>
+          <option value="confessionals" >Confessionals</option>
+          <option value="avant-garde" >Avant-Garde</option>
+          <option value="after-hours"  >After Hours</option>
+          <option value="ask-off-locust"  >Ask Off Locust</option>
+        </select>
+      </div>
+
+      <div class="col col-1">
+        <label>Content: </label>
+      </div>
+      <div class="col col-11">
+        <textarea type="text" name="content" cols=100 rows=10><%=article.content%></textarea>
+      </div>
+
+      <button type="submit" name="button" class="btn btn-red">Update</button>
+    </form>
+  </div>
+</div>
 
 <%- include("./partials/footer"); -%>

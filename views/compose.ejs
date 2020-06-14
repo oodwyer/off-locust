@@ -4,14 +4,14 @@
   <h2 class="section-title">Compose</h2>
 
 
-  <form class="" action="/compose-article" method="post">
+  <form id="compose-form" action="/compose-article" method="post">
     <h3>New Article</h3>
-    <input type="text" name="title" placeholder="Title"><br />
-    <input type="text" name="subtitle" placeholder="Subtitle"><br />
-    <input type="text" name="author" placeholder="Author"><br />
-    <input type="text" name="image" placeholder="Image Link"><br />
-
-
+    <input type="text" name="title" placeholder="Title" size=80><br />
+    <input type="text" name="subtitle" placeholder="Subtitle" size=80><br />
+    <input type="text" name="author" placeholder="Author" size=80><br />
+    <input type="text" name="image" placeholder="Image Link" size=80><br />
+    
+    <input type="date" name="date" value=""><br />
 
   <select id="section" name="section">
     <option value="exposed">#Exposed</option>
@@ -19,7 +19,7 @@
     <option value="avant-garde">Avant-Garde</option>
     <option value="after-hours">After Hours</option>
     <option value="ask-off-locust">Ask Off Locust</option>
-  </select>
+  </select><br /><br />
 
     <input type="checkbox" name="featured">Featured?<br />
     <p> To create a new paragraph, please copy and paste this: ### between every paragraph. </p>
@@ -34,7 +34,7 @@
     <% articles.forEach(function(article){ %>
       <% let checked = article.featured? "checked" : "";%>
     <input type="checkbox" name="<%= article._id %>" <%=checked%> >
-    <%= article.title %>, <%= article.date %> <br />
+    <%= article.title %>, <%= article.dateString %> <br />
     <% }) %>
     <br />
 
@@ -46,21 +46,23 @@
 
     <% articles.forEach(function(article){ %>
     <input type="checkbox" name="<%= article._id %>" >
-    <%= article.title %>, <%= article.date %> <br />
+    <%= article.title %>, <%= article.dateString %> <br />
     <% }) %>
     <br />
     <button type="submit" name="button" class="btn btn-secondary">Delete Selected</button>
   </form>
 
-  <form class="" action="/compose-edit" method="post">
     <h3>Edit Article</h3>
 
     <% articles.forEach(function(article){ %>
-    <button type="submit" id="<%= article._id %>" name="<%= article._id %>" class=""></button>
-    <%= article.title %>, <%= article.date %> <br />
+    <form class="edit-form" action="/compose-edit" method="post">
+      <input type="hidden" name="articleId" value="<%=article._id%>">
+      <button type="submit" class="btn btn-secondary"></button>
+      <%= article.title %>, <%= article.dateString %> <br />
+    </form>
+
     <% }) %>
     <br />
-  </form>
 
   <h2>Questions</h2>
   <% questions.forEach(function(question){ %>

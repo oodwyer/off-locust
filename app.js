@@ -31,18 +31,18 @@ const articleSchema = new mongoose.Schema({
   content: String,
   section: String,
   featured: Boolean,
-  img: String
-
+  img: String,
+  dateString:String
 });
 const Article = mongoose.model("Article", articleSchema);
 
-const testArticle = new Article({
-  title: "Test Article Title 2",
-  date: "May 30, 2020",
-  author: "Olivia O'Dwyer",
-  content: "This is the test article 2 content blah blah blah",
-  section: "exposed"
-});
+// const testArticle = new Article({
+//   title: "Test Article Title 2",
+//   date: "May 30, 2020",
+//   author: "Olivia O'Dwyer",
+//   content: "This is the test article 2 content blah blah blah",
+//   section: "exposed"
+// });
 // testArticle.save();
 
 const questionSchema = new mongoose.Schema({
@@ -50,6 +50,7 @@ const questionSchema = new mongoose.Schema({
 });
 const Question = mongoose.model("Question", questionSchema);
 
+const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -157,9 +158,10 @@ app.get("/articles/:articleID", function(req, res){
     if (!err) {
           // adds the hashtag for the exposed section
           let curSection = article.section;
-          if(curSection == "exposed"){
-            curSection = "#exposed";
-          }
+          curSection == "exposed" ? curSection = "#exposed" : null
+          curSection == "after-hours" ? curSection = "after hours" : null
+          curSection == "ask-off-locust" ? curSection = "ask off locust" : null
+
           res.render("article", {
             article:article,
             sectionAp:_.toUpper(curSection)
@@ -211,6 +213,7 @@ var articleArray;
                   console.log(err);
                 } else {
                   articleArray = articles;
+
                   Question.find(function(err, questions) {
                     if (err) {
                       console.log("error");
@@ -218,6 +221,7 @@ var articleArray;
                       res.render("compose", {articles:articleArray, questions: questions, errM:""});
                     }
                   });
+
                 }
               });
             } else { //password was incorrect
@@ -286,13 +290,13 @@ const newPassword2 = req.body.newPassword2;
 app.post("/compose-article", function(req,res,){
   let title= req.body.title;
   let author= req.body.author;
-  let section= req.body.section;
+  let section= req.body.section[1];
   let featured= req.body.featured === "on" ? true : false;
   let content= req.body.content;
   let subtitle = req.body.subtitle;
   let image = req.body.image;
-  // console.log("FEATURED: " + req.body.featured.checked);
-
+  let d = req.body.date;
+  var date = new Date(d);
   const newArticle = new Article ({
     title:title,
     subtitle:subtitle,
@@ -300,15 +304,15 @@ app.post("/compose-article", function(req,res,){
     section:section,
     featured:featured,
     content:content,
-    img: image
-    // date: new Date()
-    //date
+    img: image,
+    date:date,
+    dateString: months[date.getMonth()]+" "+(1+date.getDate())+", "+ date.getFullYear()
   });
+
   newArticle.save(function(err){
-    if(err){
-      console.log(err);
-    }
+    err ? console.log(err) : null
   });
+
   res.redirect("/");
 });
 
@@ -353,12 +357,58 @@ app.post("/compose-delete", function(req,res) {
 });
 
 app.post("/compose-edit", function(req,res){
-  const articleId = req.body.id;
-  console.log(articleId);
+  const articleId = req.body.articleId;
+  Article.findOne({_id:articleId}, function(err, article){
+    if(err){
+      console.log(err);
+    } else{
+      let curSection = article.section;
+      let m = article.date.getMonth();
+      let d = article.date.getDate();
+      let y = article.date.getFullYear();
+      d < 10 ? d = "0"+d : d=d
+      m < 10 ? m = "0"+m : m=m
+      let inputDate = y+"-"+m+"-"+d;
+      res.render("edit-article", {article:article, sectionAp: _.startCase(curSection), inputDate:inputDate});
+    }
+
+  })
 });
 
+app.post("/edit-article", function(req,res){
+  let title= req.body.title;
+  let subtitle = req.body.subtitle;
+  let author= req.body.author;
+  let section= req.body.section;
+  let content= req.body.content;
+  let img = req.body.img;
+  let articleId = req.body.articleId;
+  let d = req.body.date;
+  let date = new Date(d);
+  let dateString= months[date.getMonth()]+" "+(1+date.getDate())+", "+ date.getFullYear();
+  console.log(req.body);
+  Article.updateOne({_id:articleId},{
+    title:title,
+    subtitle:subtitle,
+    author:author,
+    section:section,
+    content:content,
+    img:img,
+    date:date,
+    dateString:dateString
+    },
+    function(err){
+    if(err){
+      console.log(err);
+    } else {
+      res.redirect("/");//temporary
+    }
+  })
 
-app.listen(3000, function(err) {
+});//months[date.getMonth()]+" "+(1+date.getDate())+", "+ date.getFullYear()
+
+
+app.listen(4000, function(err) {
   if(err){
     console.log(err);
   } else {
