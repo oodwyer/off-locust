@@ -64,7 +64,7 @@ app.get("/login", function(req, res){
 });
 
 app.get("/", function(req, res) {
-  Article.find({featured:true},function(err, articles) {
+  Article.find({featured:true}).sort([['date', 1]]).exec(function(err, articles) {
     if (err) {
       console.log("error");
     } else {
@@ -76,7 +76,7 @@ app.get("/", function(req, res) {
 });
 
 app.get("/exposed", function(req, res) {
-  Article.find({section: "exposed"}, function(err, articles) {
+  Article.find({section: "exposed"}).sort([['date', 1]]).exec(function(err, articles) {
     if (err) {
       console.log("error");
     } else {
@@ -88,7 +88,7 @@ app.get("/exposed", function(req, res) {
 });
 
 app.get("/confessionals", function(req, res) {
-  Article.find({section: "confessionals"}, function(err, articles) {
+  Article.find({section: "confessionals"}).sort([['date', 1]]).exec(function(err, articles) {
     if (err) {
       console.log("error");
     } else {
@@ -100,7 +100,7 @@ app.get("/confessionals", function(req, res) {
 });
 
 app.get("/avant-garde", function(req, res) {
-  Article.find({section: "avant-garde"}, function(err, articles) {
+  Article.find({section: "avant-garde"}).sort([['date', 1]]).exec(function(err, articles) {
     if (err) {
       console.log("error");
     } else {
@@ -112,7 +112,7 @@ app.get("/avant-garde", function(req, res) {
 });
 
 app.get("/after-hours", function(req, res) {
-  Article.find({section: "after-hours"}, function(err, articles) {
+  Article.find({section: "after-hours"}).sort([['date', 1]]).exec(function(err, articles) {
     if (err) {
       console.log("error");
     } else {
@@ -124,7 +124,7 @@ app.get("/after-hours", function(req, res) {
 });
 
 app.get("/ask-off-locust", function(req, res) {
-  Article.find({section: "ask-off-locust"}, function(err, articles) {
+  Article.find({section: "ask-off-locust"}).sort([['date', 1]]).exec(function(err, articles) {
     if (err) {
       console.log("error");
     } else {
@@ -138,7 +138,7 @@ app.get("/ask-off-locust", function(req, res) {
 app.get("/author/:authorName", function(req, res) {
   const requestedAuthor = req.params.authorName;
 
-  Article.find({author: requestedAuthor}, function(err, articles) {
+  Article.find({author: requestedAuthor}).sort([['date', 1]]).exec(function(err, articles) {
     if (err) {
       console.log("error");
     } else {
