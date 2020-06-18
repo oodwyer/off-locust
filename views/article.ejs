@@ -1,7 +1,8 @@
 <%- include("partials/header"); -%>
 
 <div class="art-img-container">
-  <img class="art-img" src="/images/sample-img.png" alt="article-head-img">
+  <% let link = article.img ? article.img : "/images/sample-img.png"; %>
+  <img class="art-img" src="<%=link%>" alt="article-head-img">
 </div>
 
 <div id="art-title-container" class="container">

@@ -2,11 +2,11 @@
 
 <h2 class="section-title">FEATURED</h2>
 
-<div id="featured-row" class="container">
+<div id="card-row" class="container">
   <div class="row">
     <% articles.reverse()%>
     <%  articles.forEach(function(a){ %>
-    <%- include("./partials/featured-card", {articles:articles, a:a}); %>
+    <%- include("./partials/card", {articles:articles, a:a}); %>
     <% }) %>
 
   </div>
@@ -63,7 +63,7 @@
             You didn’t think we’d publish a magazine as the voice of this campus without hearing from you guys? We know you guys have some deep, dark desires in your brains, so whether it's a tip or two for the bedroom, or how to cut out that toxic
             friend from your life, Off Locust will provide you with the answers that you may not want to hear, but definitely need to.</li>
 
-          <li>Avante-Garde <br>
+          <li>Avant-Garde <br>
             As much as we are here for getting down and dirty in all things Penn, we also want to make sure that you are staying up to date with the best of the best on campus as well. So whether it’s a brutally honest review of the latest cafe
             opening on campus, or the newest bangers to hit the airwaves, Off Locust is here to keep you culturally updated.</li>
 

@@ -2,15 +2,20 @@
 <div id="card-col" class="col col-12 col-md-6 col-lg-4">
   <a href="/articles/<%=a._id%>">
     <div class="card standard-card">
-      <img class="card-img-top" src="/images/sample-img.png" alt="Card image cap">
+      <% let link = a.img ? a.img : "/images/sample-img.png"; %>
+      <img class="card-img-top" src="<%=link%>" alt="Card image cap">
       <div class="card-body">
 
         <a href="/articles/<%=a._id%>">
-          <h5 class="card-title"> <%=a.title.substring(0, 100)%> </h5>
+          <% var titleComplete = (57 < a.title.length) ? false : true; %>
+          <h5 class="card-title"> <%= titleComplete ? a.title.substring(0, 57) : a.title.substring(0, 54) + "..."%> </h5>
+
         </a>
         <p>
+          <% var length = a.title.length < 52 ? 52 - a.title.length : 0; %>
           <% if (a.subtitle){%>
-              <%=a.subtitle.substring(0, 42) + "..." %>
+              <% var subComplete = (33 < a.subtitle.length) ? false : true; %>
+              <%= subComplete  ? a.subtitle.substring(0, 35)  : a.subtitle.substring(0, 32) + "..."%>
           <% } %>
         </p>
       </div>
