@@ -7,15 +7,33 @@
       <div class="card-body">
 
         <a href="/articles/<%=a._id%>">
-          <% var titleComplete = (57 < a.title.length) ? false : true; %>
-          <h5 class="card-title"> <%= titleComplete ? a.title.substring(0, 57) : a.title.substring(0, 54) + "..."%> </h5>
+          <% var titleArr = a.title.split(" ");%>
+          <% var titleThatWillFit = "";%>
+          <% var count = 0;%>
+          <% var index = 0;%>
+          <% while (index < titleArr.length && count + titleArr[index].length < 57) { %>
+          <% titleThatWillFit += titleArr[index] + " "%>
+          <% count += titleArr[index].length + 1;%>
+          <% index++;%>
+          <%}%>
+          <% var titleComplete = index < titleArr.length ? false : true%>
+          <h5 class="card-title"> <%= titleComplete ? a.title : titleThatWillFit.substring(0, titleThatWillFit.length - 1) + "..."%> </h5>
 
         </a>
         <p>
           <% var length = a.title.length < 52 ? 52 - a.title.length : 0; %>
           <% if (a.subtitle){%>
-              <% var subComplete = (33 < a.subtitle.length) ? false : true; %>
-              <%= subComplete  ? a.subtitle.substring(0, 35)  : a.subtitle.substring(0, 32) + "..."%>
+            <% var subtitleArr = a.subtitle.split(" ");%>
+            <% var subtitleThatWillFit = "";%>
+            <% var count = 0;%>
+            <% var index = 0;%>
+            <% while (index < subtitleArr.length && count + subtitleArr[index].length < 33) { %>
+            <% subtitleThatWillFit += subtitleArr[index] + " "%>
+            <% count += subtitleArr[index].length + 1;%>
+            <% index++;%>
+            <%}%>
+            <% var subtitleComplete = index < subtitleArr.length ? false : true%>
+              <%= subtitleComplete  ? a.subtitle  : subtitleThatWillFit.substring(0, subtitleThatWillFit.length - 1) + "..."%>
           <% } %>
         </p>
       </div>
