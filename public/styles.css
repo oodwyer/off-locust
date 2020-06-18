@@ -154,6 +154,10 @@ a h5{
   color:white;
 }
 
+#ask-form .ask-button {
+  text-align: center;
+}
+
 /* Article page */
 .art-img-container{
   margin-top:0;
