@@ -334,3 +334,8 @@ a h5{
   margin-top:2px;
   margin-bottom:0;
 }
+
+/*Login page */
+.login-form {
+  text-align: center;
+}

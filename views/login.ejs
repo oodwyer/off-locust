@@ -3,18 +3,26 @@
 <h2 class="section-title">LOGIN</h2>
 <h4><%=errorMess%></h4>
 
+<div class="login-form">
+
 <form class="" action="/login" method="post">
   <input type="text" name="username" value="" placeholder="Username" required=true>
   <input type="password" name="password" value="" placeholder="Password" required=true>
-  <button type="submit" name="">Log in</button>
+  <button type="submit" name="" class="btn btn-red">Log in</button>
 </form>
 
+<br />
+<p>
+  To change password:
+  </p>
 <form class="" action="/reset-password" method="post">
   <input type="text" name="username" value="" placeholder="Username" required=true>
   <input type="password" name="oldPassword" value="" placeholder="Old password" required=true>
   <input type="password" name="newPassword" value="" placeholder="New password" required=true>
   <input type="password" name="newPassword2" value="" placeholder="Confirm new password" required=true>
-  <button type="submit" name="">Reset</button>
+  <button type="submit" name="" class="btn btn-red">Reset</button>
 </form>
+</div>
+
 
 <%- include("partials/footer"); -%>
