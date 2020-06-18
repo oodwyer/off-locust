@@ -2,6 +2,14 @@
   src: url(fonts/Granaina-Limpia-Font.ttf);
   font-family:nos;
 }
+/* @media only screen and (max-width:700px){
+  #about-img-div{
+    width:100%;
+  }
+  #about-img{
+    max-width:100%;
+  }
+} */
 
 #main{
   /* background-color: rgb(20, 20, 20); */
@@ -31,6 +39,10 @@ input, select, textarea{
 /* form p{
   font-family:sans-serif;
 } */
+
+body {
+  background-color: #262626;
+}
 
 
 /* Navbar  */
@@ -98,9 +110,9 @@ input, select, textarea{
   /* font-family:sans-serif; */
 }
 .card-img-top{
-  max-height:340px;
+  height:250px;
   border-radius: 5px 5px 0 0;
-
+  object-fit: cover;
 }
 #featured-row .row .col{
   padding:40px;
@@ -109,7 +121,7 @@ input, select, textarea{
   padding-bottom: 5px;
   background-color:#e3e3e3;
   border-radius:0 0 5px 5px;
-  height:125px;
+  height:145px;
 }
 a h5{
   color:black;
@@ -122,16 +134,16 @@ a h5{
 
 /* Home - about */
 #about-img{
-  max-width:300px;
+  max-width:250px;
+  float:left;
+  margin:20px 20px 20px 0;
 }
 #about-container{
   margin-top:50px;
 }
-#about-container .col {
-  margin-bottom:50px;
-  padding-right: 35px;
-  padding-left: 35px;
 
+#about-text{
+  /* text-align: justify; */
 }
 
 
