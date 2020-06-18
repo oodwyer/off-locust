@@ -161,7 +161,7 @@ a h5{
   margin:15px 5px;
 }
 
-#ask-form .btn:hover{
+.btn-red:hover{
   background-color: #c91d14;
   color:white;
 }
