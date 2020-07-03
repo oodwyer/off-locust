@@ -2,14 +2,17 @@
   src: url(fonts/Granaina-Limpia-Font.ttf);
   font-family:nos;
 }
-/* @media only screen and (max-width:700px){
-  #about-img-div{
-    width:100%;
-  }
+
+@media only screen and (max-width:768px){
+  /* #about-img-div{
+    width:100% !important;
+  } */
   #about-img{
-    max-width:100%;
+    max-width:80% !important;
+    margin-left: 10% !important;
+    margin-right: 10% !important;
   }
-} */
+}
 
 #main{
   /* background-color: rgb(20, 20, 20); */

@@ -306,7 +306,7 @@ app.post("/compose-article", function(req,res,){
     content:content,
     img: image,
     date:date,
-    dateString: months[date.getMonth()]+" "+(1+date.getDate())+", "+ date.getFullYear()
+    dateString: months[date.getMonth()]+" "+(date.getDate())+", "+ date.getFullYear()
   });
 
   newArticle.save(function(err){
