@@ -306,7 +306,7 @@ app.post("/compose-article", function(req,res,){
     content:content,
     img: image,
     date:date,
-    dateString: months[date.getMonth()]+" "+(1+date.getDate())+", "+ date.getFullYear()
+    dateString: months[date.getMonth()]+" "+(date.getDate())+", "+ date.getFullYear()
   });
 
   newArticle.save(function(err){
@@ -412,12 +412,15 @@ app.post("/edit-article", function(req,res){
   })
 
 });//months[date.getMonth()]+" "+(1+date.getDate())+", "+ date.getFullYear()
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
 
-
-app.listen(4000, function(err) {
+app.listen(port, function(err) {
   if(err){
     console.log(err);
   } else {
-    console.log("Server started on port 3000");
+    console.log("Server started");
   }
 });
