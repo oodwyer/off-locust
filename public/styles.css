@@ -5,11 +5,21 @@
 /* @media only screen and (max-width:700px){
   #about-img-div{
     width:100%;
+    background-color: red;
   }
   #about-img{
-    max-width:100%;
+    max-width:400px;
   }
 } */
+
+@media only screen and (max-width:768px){
+  .art-author, .art-date{
+    text-align: center !important;
+  }
+  .art-author{
+    padding-bottom: 20px !important;
+  }
+}
 
 #main{
   /* background-color: rgb(20, 20, 20); */
