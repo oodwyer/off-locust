@@ -365,12 +365,14 @@ app.post("/compose-edit", function(req,res){
       let curSection = article.section;
       let inputDate= "";
       if(article.date){
-        let m = article.date.getMonth();
-        let d = article.date.getDate();
+        let m = article.date.getMonth()+1;
+        let d = article.date.getDate()+1;
         let y = article.date.getFullYear();
+
         d < 10 ? d = "0"+d : d=d
         m < 10 ? m = "0"+m : m=m
         inputDate = y+"-"+m+"-"+d;
+
       }
 
       res.render("edit-article", {article:article, sectionAp: _.startCase(curSection), inputDate:inputDate});
