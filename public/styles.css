@@ -34,7 +34,8 @@
 
 p {
    /* font-family: serif; */
-   font-weight: normal;
+   /* font-weight:lighter; */
+   /* font-weight: normal; */
    font-style: normal;
    font-size: 1.5em;
 }
@@ -95,7 +96,7 @@ body {
 .section-title{
   text-align: center;
   /* font-family: 'Barlow Condensed', sans-serif; */
-  font-size:3em;
+  font-size:2.5em;
   margin-top:60px;
 }
 
