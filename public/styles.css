@@ -157,6 +157,8 @@ a h5{
 
 #about-text{
   /* text-align: justify; */
+  font-family: serif;
+
 }
 
 
@@ -195,6 +197,11 @@ a h5{
 .art-body{
   margin:0 auto;
 }
+
+.art-body p{
+  font-family: serif;
+}
+
 .author-div{
   margin: auto;
   width:100%;
