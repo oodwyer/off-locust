@@ -2,17 +2,17 @@
   src: url(fonts/Granaina-Limpia-Font.ttf);
   font-family:nos;
 }
-
+/*
 @media only screen and (max-width:768px){
   /* #about-img-div{
     width:100% !important;
   } */
-  #about-img{
+  /* #about-img{
     max-width:80% !important;
     margin-left: 10% !important;
     margin-right: 10% !important;
   }
-}
+} */
 
 @media only screen and (max-width:768px){
   .art-author, .art-date{
@@ -148,8 +148,10 @@ a h5{
 /* Home - about */
 #about-img{
   max-width:250px;
-  float:left;
-  margin:20px 20px 20px 0;
+  margin:40px 0 40px 0;
+}
+#about-img-div{
+  text-align: center;
 }
 #about-container{
   margin-top:50px;
@@ -370,4 +372,10 @@ a h5{
 /*Login page */
 .login-form {
   text-align: center;
+}
+
+/* i tags for asterisks** */
+.asterisk {
+  font-family:serif;
+  font-style: normal;
 }

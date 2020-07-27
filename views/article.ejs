@@ -44,7 +44,11 @@
       <div class="read-more-div">
         <a href="/<%=article.section%>">
           <i class="fa fa-arrow-circle-left"></i>
+          <% if(sectionAp == "#EXPOSED"){ %>
+            <h6>READ MORE&nbsp; <i class="asterisk">#</i>EXPOSED</h6>
+          <% } else {%>
           <h6>READ MORE&nbsp; <%=sectionAp%></h6>
+          <% }%>
         </a>
       </div>
 
