@@ -204,6 +204,7 @@ a h5{
   font-family: serif;
 }
 
+
 .author-div{
   margin: auto;
   width:100%;
@@ -266,6 +267,12 @@ a h5{
   color:black;
   text-align: left;
 }
+
+.art-body .styled-link{
+  color: gray;
+  text-decoration: underline;
+}
+
 .read-more-div h6{
   font-size: 1.35em;
   display:inline;

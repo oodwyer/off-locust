@@ -37,8 +37,22 @@
 
       <% var paragraphs = article.content.split("###"); %>
       <% paragraphs.forEach(function(p) { %>
-        <p> <%= p%>  <br/>
-      <% }) %> </p>
+        <p>
+        <% var words = p.split(" ");%>
+        <% words.forEach(function(w) {%>
+        <% if(w.substring(0,2) === "{{") {%>
+        <%    var linkGroup = w.split(",")%>
+        <% var linkText = linkGroup[0].substring(2);%>
+        <% var link = linkGroup[1].substring(0,linkGroup[1].length-2); %>
+        <a class="styled-link" href=<%= link %>> <%=linkText%></a>
+        <% } else {%>
+        <%= w %>
+        <% }%>
+        <% })%>
+        <br/>
+      <% }) %>
+    </p>
+
       <br/>
       <br/>
       <div class="read-more-div">
