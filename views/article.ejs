@@ -41,10 +41,19 @@
         <% var words = p.split(" ");%>
         <% words.forEach(function(w) {%>
         <% if(w.substring(0,2) === "{{") {%>
-        <%    var linkGroup = w.split(",")%>
+        <% var linkGroup = w.split(",")%>
         <% var linkText = linkGroup[0].substring(2);%>
+        <% var newText="";%>
+        <% if (linkText.includes("_")) {%>
+        <% linkText=linkText.split("_") %>
+        <% linkText.forEach(function(l) {%>
+        <% %>
+        <% newText += l + " "%>
+        <% })%>
+        <% newText=newText.substring(0, newText.length - 1)} else {%>
+        <% newText = linkText }%>
         <% var link = linkGroup[1].substring(0,linkGroup[1].length-2); %>
-        <a class="styled-link" href=<%= link %>> <%=linkText%></a>
+        <a class="styled-link" href=<%= link %>> <%=newText%></a>
         <% } else {%>
         <%= w %>
         <% }%>
