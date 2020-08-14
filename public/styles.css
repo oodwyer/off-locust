@@ -321,6 +321,18 @@ a h5{
 #footer .fa:hover{
   color:#c91d14;
 }
+.text-newsletter{
+  border-radius: 2px 0 0 2px;
+  margin:0;
+  height:40px;
+  border:none;
+}
+
+.btn-newsletter{
+  margin:0;
+  border-radius: 0 2px 2px 0;
+  height:40px;
+}
 
 /* Standard cards */
 #card-col{
