@@ -36,19 +36,21 @@ const articleSchema = new mongoose.Schema({
 });
 const Article = mongoose.model("Article", articleSchema);
 
-// const testArticle = new Article({
-//   title: "Test Article Title 2",
-//   date: "May 30, 2020",
-//   author: "Olivia O'Dwyer",
-//   content: "This is the test article 2 content blah blah blah",
-//   section: "exposed"
-// });
-// testArticle.save();
-
 const questionSchema = new mongoose.Schema({
   content: String
 });
 const Question = mongoose.model("Question", questionSchema);
+
+// const videoSchema = new mongoose.Schema({
+//   title: String,
+//   subtitle: String,
+//   date: Date,
+//   author: String,
+//   content: String,
+//   url: String,
+//   dateString:String
+// });
+// const Video = mongoose.model("Video", videoSchema);
 
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const app = express();
@@ -133,6 +135,10 @@ app.get("/ask-off-locust", function(req, res) {
         });
     }
   });
+});
+
+app.get("/videos", function(req, res) {
+  res.render("videos");
 });
 
 app.get("/author/:authorName", function(req, res) {
