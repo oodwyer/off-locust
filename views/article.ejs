@@ -78,5 +78,5 @@
     </div>
   </div>
 </div>
-
-<%- include("partials/footer"); -%>
+<% const pageLink = "/article/"+ articleID; %>
+<%- include("partials/footer", {pageLink:pageLink}); -%>

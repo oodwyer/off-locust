@@ -2,14 +2,28 @@
 
 <h2 class="section-title">AVANT-GARDE</h2>
 
-<div id="card-row" class="container">
+<div id="top-5">
+  <div class="">
+    <h3>Top 5 Trending</h3>
+    <% topItems.forEach((item, i) => {  %>
+      <hr />
+      <h4 class="top-5-title"><b class="top-5-number"><%=item[0]%> </b> <%=item[1]%></h4>
+    <% }); %>
+
+  </div>
+</div>
+<div id="avant-outer-row">
+  <div id="avant-card-row" class="container">
   <div class="row">
     <% articles.reverse()%>
     <%  articles.forEach(function(a){ %>
-        <%- include("./partials/card", {articles:articles, a:a}); %>
+        <%- include("./partials/avant-card", {articles:articles, a:a, twoWide:true}); %>
     <% }) %>
 
   </div>
 </div>
 
-<%- include("partials/footer"); -%>
+</div>
+
+
+<%- include("partials/footer", {pageLink:"/avant-garde"}); -%>
