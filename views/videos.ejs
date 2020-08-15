@@ -2,14 +2,14 @@
 
 <h2 class="section-title">VIDEOS</h2>
 
-<!-- <div id="card-row" class="container">
+<div id="card-row" class="container">
   <div class="row">
-    <% articles.reverse()%>
-    <%  articles.forEach(function(a){ %>
-        <%- include("./partials/card", {articles:articles, a:a}); %>
+    <% videos.reverse() %>
+    <%  videos.forEach(function(v){ %>
+        <%- include("./partials/video-card", {videos:videos, v:v}); %>
     <% }) %>
 
   </div>
-</div> -->
+</div>
 
 <%- include("partials/footer", {pageLink:"/videos"}); -%>

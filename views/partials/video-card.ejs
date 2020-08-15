@@ -1,0 +1,42 @@
+<div id="card-col" class="col col-12 col-md-6 col-lg-6">
+
+  <a href="/videos/<%=v._id%>">
+    <div class="card standard-card video-card">
+      <% let link = v.img ? v.img : "/images/sample-img.png"; %>
+      <img class="card-img-top" src="<%=link%>" alt="Card image cap">
+      <div class="card-body">
+
+        <a href="/videos/<%=v._id%>">
+          <% var titleArr = v.title.split(" ");%>
+          <% var titleThatWillFit = "";%>
+          <% var count = 0;%>
+          <% var index = 0;%>
+          <% while (index < titleArr.length && count + titleArr[index].length < 77) { %>
+          <% titleThatWillFit += titleArr[index] + " "%>
+          <% count += titleArr[index].length + 1;%>
+          <% index++;%>
+          <%}%>
+          <% var titleComplete = index < titleArr.length ? false : true%>
+          <h5 class="card-title"> <%= titleComplete ? v.title : titleThatWillFit.substring(0, titleThatWillFit.length - 1) + "..."%> </h5>
+
+        </a>
+        <p>
+          <% var length = v.title.length < 62 ? 62 - v.title.length : 0; %>
+          <% if (v.subtitle){%>
+            <% var subtitleArr = v.subtitle.split(" ");%>
+            <% var subtitleThatWillFit = "";%>
+            <% var count = 0;%>
+            <% var index = 0;%>
+            <% while (index < subtitleArr.length && count + subtitleArr[index].length < 33) { %>
+            <% subtitleThatWillFit += subtitleArr[index] + " "%>
+            <% count += subtitleArr[index].length + 1;%>
+            <% index++;%>
+            <%}%>
+            <% var subtitleComplete = index < subtitleArr.length ? false : true%>
+              <%= subtitleComplete  ? v.subtitle  : subtitleThatWillFit.substring(0, subtitleThatWillFit.length - 1) + "..."%>
+          <% } %>
+        </p>
+      </div>
+    </div>
+  </a>
+</div>

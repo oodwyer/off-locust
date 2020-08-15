@@ -1,0 +1,55 @@
+<%- include("./partials/header"); -%>
+<h2 class="section-title">Edit Video</h2>
+<div id="edit-container"class="container">
+  <div class="row">
+    <form class="" action="/edit-video" method="post">
+      <input type="hidden" name="videoID" value=<%=video._id%>>
+      <div class="col col-1">
+        <label>Title: </label>
+      </div>
+      <div class="col col-11">
+        <input type="text" name="title" value="<%=video.title%>" size=100>
+      </div>
+
+      <div class="col col-1">
+        <label>Subtitle: </label>
+      </div>
+      <div class="col col-11">
+        <input type="text" name="subtitle" value="<%=video.subtitle%>"size=100>
+      </div>
+
+      <div class="col col-1">
+        <label>Author: </label>
+      </div>
+      <div class="col col-11">
+        <input type="text" name="author" value="<%=video.author%>"size=100>
+      </div>
+
+      <div class="col col-1">
+        <label>Image: </label>
+      </div>
+      <div class="col col-11">
+        <input type="text" name="img" value="<%=video.img%>"size=100>
+      </div>
+
+      <div class="col col-1">
+        <label>Date: </label>
+      </div>
+      <div class="col col-11">
+        <input type="date" name="date" value="<%=inputDate%>"><br />
+      </div>
+
+      <div class="col col-1">
+        <label>URL: </label>
+      </div>
+      <div class="col col-11">
+        <input type="text" name="url" value="<%=video.url%>" size=100>
+      </div>
+
+
+      <button type="submit" name="button" class="btn btn-red">Update</button>
+    </form>
+  </div>
+</div>
+
+<%- include("./partials/footer", {pageLink:"/"}); -%>

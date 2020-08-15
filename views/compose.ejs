@@ -86,10 +86,47 @@
     <% topItems.forEach(function(item){ %>
       <% console.log(item, item[0], item[1]) %>
       <label><%= item[0] %>)</label>
-      <input type="text" name= "items" value="<%=item[1]%>"><br />
+      <input type="text" name= "items" size="80" value="<%=item[1]%>"><br />
     <% }); %>
     <button type="submit" name="button" class="btn btn-secondary">Update</button>
   </form>
+
+  <form class="" action="/new-video" method="post">
+    <h3>New Video</h3>
+    <input type="text" name="title" placeholder="Title" size=80 required><br />
+    <input type="text" name="subtitle" placeholder="Subtitle" size=80><br />
+    <input type="text" name="author" placeholder="Author" size=80><br /><br />
+    <p>Steps to get image thumbnail link: </p>
+    <ol>
+      <li>Sign in to offLocust imgur account and hit "new post" and drop your photo there. </li>
+      <li>Right click on image and click "Open image in new tab."</li>
+      <li>Right click on the image in the new tab and "Copy Image Address"</li>
+      <li>That's it! No need to post the photo.</li>
+    </ol>
+    <input type="text" name="img" placeholder="Image Link" size=80><br /><br/><br />
+    <p>Steps to get video link: </p>
+    <ol>
+      <li>Upload video to youtube (use the OffLocust account) </li>
+      <li>Pull up the video on youtube and click Share. </li>
+      <li>Copy the provided link. It should be in the format seen below.</li>
+    </ol>
+    <input type="text" name="url" placeholder="https://youtu.be/someTextHere" size=80 required><br />
+    <br />
+    <label>Date (Use the automatic date picker, or input manually in format YYYY-MM-DD):</label><br />
+    <input type="date" name="date" value="" required=true><br /><br />
+    <button type="submit" name="button" class="btn btn-secondary">Publish</button>
+  </form>
+
+  <h3>Edit Video</h3>
+  <% videos.forEach(function(video){ %>
+  <form class="edit-form" action="/select-edit-video" method="post">
+    <input type="hidden" name="videoID" value="<%=video._id%>">
+    <button type="submit" class="btn btn-secondary"></button>
+    <%= video.title %>, <%= video.dateString %> <br />
+  </form>
+
+  <% }) %>
+  <br />
 
 </div>
 

@@ -1,0 +1,51 @@
+<%- include("partials/header"); -%>
+<!--  -->
+
+<div id="art-title-container" class="container">
+  <div class="row">
+    <div class="title-div col col-11">
+      <h2 class="art-title"><%=video.title%> </h2>
+      <% if (video.subtitle != undefined){ %>
+      <h3 class="art-subtitle"><%=video.subtitle%></h3>
+      <% } %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="art-body col col-11 col-lg-9 col-md-11">
+
+      <div class="row author-div ">
+
+        <div class="col col-12 col-md-5 col-lg-5 art-author">
+          <h3>By <a href="/author/<%=video.author%>"><%=video.author%></a></h3>
+        </div>
+        <!-- <div class="col col-1"> -->
+        <div class="col col-12 col-md-2 col-lg-2">
+          <h1>|</h1>
+        </div>
+        <!-- </div> -->
+        <div class="col col-12 col-md-5 col-lg-5  art-date">
+          <h3><%= video.dateString%></h3>
+
+        </div>
+      </div>
+      <br />
+      <br />
+      <div id="video-container">
+        <iframe id="video" src="https://www.youtube.com/embed/<%=video.urlEnd%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <br/>
+      <br/>
+      <div class="read-more-div">
+        <a href="/videos">
+          <i class="fa fa-arrow-circle-left"></i>
+          <h6>WATCH MORE&nbsp; VIDEOS</h6>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+<% const pageLink = "/article/"+ videoID; %>
+<%- include("partials/footer", {pageLink:pageLink}); -%>
