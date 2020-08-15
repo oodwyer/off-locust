@@ -7,7 +7,7 @@
     <h2>Top 5 Trending</h2>
     <% topItems.forEach((item, i) => {  %>
       <hr />
-      <h4 class="top-5-title"><b class="top-5-number"><%=item[0]%> </b> 
+      <h4 class="top-5-title"><b class="top-5-number"><%=item[0]%> </b>
         <% var words = item[1].split(" ");%>
         <% words.forEach(function(w) {%>
         <% if(w.substring(0,2) === "{{") {%>
@@ -23,7 +23,7 @@
         <% newText=newText.substring(0, newText.length - 1)} else {%>
         <% newText = linkText }%>
         <% var link = linkGroup[1].substring(0,linkGroup[1].length-2); %>
-        <a class="styled-link" href=<%= link %>> <%=newText%></a>
+        <a class="top-5-link" target="blank" href=<%= link %>> <%=newText%></a>
         <% } else {%>
         <%= w %>
         <% }%>
