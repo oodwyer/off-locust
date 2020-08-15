@@ -54,7 +54,7 @@ const Question = mongoose.model("Question", questionSchema);
 
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const app = express();
-var topItems = [[1,"Sample item 1"],[2,"Sample item 2"],[3,"Sample item 3"],[4,"Sample item 4"],[5,"Sample item 5"]]
+var topItems = [[1,"Sample trending thing number one"],[2,"Longer longer sample trending thing number two"],[3,"Sample item number three"],[4,"Sample item 4"],[5,"Sample item 5"]]
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
