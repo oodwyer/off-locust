@@ -432,12 +432,14 @@ a h5{
 #top-5{
   float:right;
   text-align: left;
-  max-width:23%;
-  margin:50px;
+  max-width:25%;
+  margin-right:65px;
+  margin-top:60px;
 }
 .top-5-number{
   font-size: 1.3em;
   font-family: 'Special Elite', cursive;
+  font-style: italic;
 }
 #top-5 h4{
   font-family: serif;
