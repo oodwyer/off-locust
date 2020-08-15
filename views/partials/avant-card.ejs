@@ -1,10 +1,7 @@
-<% if(typeof twoWide != 'undefined'){ %>
-<div id="card-col" class="col col-12 col-md-6 col-lg-6">
-<% } else { %>
-<div id="card-col" class="col col-12 col-md-6 col-lg-4">
-<% } %>
+<div id="avant-card-col" class="col col-12 col-md-12 col-lg-6">
+
   <a href="/articles/<%=a._id%>">
-    <div class="card standard-card">
+    <div class="card standard-card avant-card">
       <% let link = a.img ? a.img : "/images/sample-img.png"; %>
       <img class="card-img-top" src="<%=link%>" alt="Card image cap">
       <div class="card-body">

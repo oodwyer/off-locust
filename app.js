@@ -54,6 +54,7 @@ const Question = mongoose.model("Question", questionSchema);
 
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const app = express();
+var topItems = [[1,"Sample item 1"],[2,"Sample item 2"],[3,"Sample item 3"],[4,"Sample item 4"],[5,"Sample item 5"]]
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -107,7 +108,8 @@ app.get("/avant-garde", function(req, res) {
       console.log("error");
     } else {
       res.render("avant-garde", {
-        articles: articles
+        articles: articles,
+        topItems:topItems
         });
     }
   });
@@ -170,7 +172,8 @@ app.get("/articles/:articleID", function(req, res){
 
           res.render("article", {
             article:article,
-            sectionAp:_.toUpper(curSection)
+            sectionAp:_.toUpper(curSection),
+            articleID:  requestedID
           });
         }
       });
@@ -224,7 +227,7 @@ var articleArray;
                     if (err) {
                       console.log("error");
                     } else {
-                      res.render("compose", {articles:articleArray, questions: questions, errM:""});
+                      res.render("compose", {articles:articleArray, questions: questions, topItems:topItems, errM:""});
                     }
                   });
 
@@ -417,7 +420,23 @@ app.post("/edit-article", function(req,res){
     }
   })
 
-});//months[date.getMonth()]+" "+(1+date.getDate())+", "+ date.getFullYear()
+});
+
+app.post("/subscribe-newsletter", function(req,res){
+  const pageLink = req.body.pageLink;
+
+});
+
+app.post("/top5", function(req,res){
+  const items = req.body.items;
+  items.forEach(function(item,i){
+    topItems[i][1] = item;
+  });
+  console.log(topItems);
+  res.redirect("/avant-garde")
+});
+
+//Port setup
 let port = process.env.PORT;
 if (port == null || port == "") {
   port = 3000;
