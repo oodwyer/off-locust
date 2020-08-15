@@ -32,7 +32,15 @@
 
     <input type="checkbox" name="featured">Featured?<br />
     <p> To create a new paragraph, please copy and paste this: ### between every paragraph. <br />
-    To add a link, format it like this: {{linkText,link}} with spaces before and after.</p>
+    To add a link, format it like this: {{linkText,link}} with spaces before and after. If there are spaces in the link text, please format it like this: {{link_text_here,link.com}}.
+    To add bold, surround your text with this: &ltb&gt (example: " &ltb&gtthis is my text&ltb&gt ")
+    <br/>
+    For italics, replace the b with i, and to use both bold and italics, replace with "bi".
+    <br/>
+    Note: When bolding, italicizing, or both, please make sure that there is a space before and after the &lti&gt even if it is on its own line!
+
+      </p>
+
 
     <textarea type="text" name="content" rows=4 cols=80 placeholder="Content"></textarea> <br />
     <br />
@@ -83,6 +91,7 @@
 
   <form class="" action="/top5" method="post">
     <h2>Top 5 Trending (Avant-Garde)</h2>
+      <p>To add a link, format it like this: {{linkText,link}} with spaces before and after. If there are spaces in the link text, please format it like this: {{link_text_here,link.com}}</p>
     <% topItems.forEach(function(item){ %>
       <% console.log(item, item[0], item[1]) %>
       <label><%= item[0] %>)</label>

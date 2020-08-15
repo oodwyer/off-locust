@@ -39,6 +39,9 @@
       <% paragraphs.forEach(function(p) { %>
         <p>
         <% var words = p.split(" ");%>
+        <% var bold = false; %>
+        <% var boldItalics = false; %>
+        <% var italics = false;%>
         <% words.forEach(function(w) {%>
         <% if(w.substring(0,2) === "{{") {%>
         <% var linkGroup = w.split(",")%>
@@ -53,9 +56,38 @@
         <% newText=newText.substring(0, newText.length - 1)} else {%>
         <% newText = linkText }%>
         <% var link = linkGroup[1].substring(0,linkGroup[1].length-2); %>
-        <a class="styled-link" href=<%= link %>> <%=newText%></a>
+        <a class="styled-link" href=<%= link %>> <%=newText%> </a>
+        <% } else if (w.substring(0,3) === "<b>") { %>
+        <%  bold = true;%>
+        <% w = w.substring(w.length - 3) === "<b>" ? w.substring(3, w.length - 3) : w.substring(3);%>
+        <b><%=w%></b>
+        <% if (w.substring(w.length - 3) === "<b>") { bold = false } %>
+        <% } else if (w.substring(0,3) === "<i>") { %>
+        <%  italics = true;%>
+        <% w = w.substring(w.length - 3) === "<i>" ? w.substring(3, w.length - 3) : w.substring(3);%>
+        <i><%=w%></i>
+        <% if (w.substring(w.length - 3) === "<i>") { italics = false } %>
+        <% } else if (w.substring(0,4) === "<bi>") { %>
+        <%  boldItalics = true;%>
+        <% w = w.substring(w.length - 4) === "<bi>" ? w.substring(4, w.length - 4) : w.substring(4);%>
+        <b><i><%=w%></i></b>
+        <% if (w.substring(w.length - 4) === "<bi>") { boldItalics = false } %>
         <% } else {%>
+          <% if (bold) {%>
+            <% w = w.substring(w.length - 3) === "<b>" ? w.substring(0, w.length - 3) : w;%>
+            <% if (w.substring(w.length - 3) === "<b>") { bold = false } %>
+            <b><%=w%></b>
+            <% } else if (italics) {%>
+              <% w = w.substring(w.length - 3) === "<i>" ? w.substring(0, w.length - 3) : w;%>
+              <% if (w.substring(w.length - 3) === "<i>") { italics = false } %>
+              <i><%=w%></i>
+            <% } else if (boldItalics) {%>
+              <% w = w.substring(w.length - 4) === "<bi>" ? w.substring(0, w.length - 4) : w;%>
+              <% if (w.substring(w.length - 4) === "<bi>") { boldItalics = false } %>
+              <b><i><%=w%></i></b>
+            <% } else {%>
         <%= w %>
+        <% }%>
         <% }%>
         <% })%>
         <br/>
