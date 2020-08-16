@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
+const https = require("https");
 
 //Encryption stuff, saltRounds can be increased if more security is needed
 const bcrypt = require("bcrypt");
@@ -145,6 +146,12 @@ app.get("/videos", function(req, res) {
 
 app.get("/author/:authorName", function(req, res) {
   const requestedAuthor = req.params.authorName;
+  var arr = requestedAuthor.split(" ");
+  var authorLink = "";
+  arr.forEach(function(w) {
+    authorLink += w + "%20";
+  });
+  authorLink = authorLink.substring(0, authorLink.length - 3);
 
   Article.find({author: requestedAuthor}).sort([['date', 1]]).exec(function(err, articles) {
     if (err) {
@@ -152,10 +159,12 @@ app.get("/author/:authorName", function(req, res) {
     } else {
       res.render("author", {
         authorName: _.toUpper(requestedAuthor),
+        authorLink: authorLink,
         articles: articles
         });
     }
   });
+
 });
 
 
@@ -425,7 +434,44 @@ app.post("/edit-article", function(req,res){
 app.post("/subscribe-newsletter", function(req,res){
   const pageLink = req.body.pageLink;
 
+  var email = req.body.email;
+
+  const data = {
+    members: [{
+      email_address: email,
+      status: "subscribed",
+    }]
+  }
+
+  const jsonData = JSON.stringify(data);
+
+  const url = "https://us17.api.mailchimp.com/3.0/lists/8c86519328";
+
+  const options = {
+    method: "POST",
+    auth:"offlocust:76647c8a82052cedd7a99c2c316f6f50-us17"
+  }
+
+  const request = https.request(url, options, function(response){
+    //send success alert
+    if (response.statusCode === 200) {
+      res.render("success", {pageLink:pageLink});
+    } else {
+      res.send(alert("hi"));
+    }
+
+    response.on("data", function(data) {
+      console.log(JSON.parse(data));
+    })
+  })
+
+  request.write(jsonData);
+  request.end();
+
 });
+
+//API Key: 76647c8a82052cedd7a99c2c316f6f50-us17
+//List ID: 8c86519328
 
 app.post("/top5", function(req,res){
   const items = req.body.items;
