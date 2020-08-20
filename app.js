@@ -42,16 +42,17 @@ const questionSchema = new mongoose.Schema({
 });
 const Question = mongoose.model("Question", questionSchema);
 
-// const videoSchema = new mongoose.Schema({
-//   title: String,
-//   subtitle: String,
-//   date: Date,
-//   author: String,
-//   content: String,
-//   url: String,
-//   dateString:String
-// });
-// const Video = mongoose.model("Video", videoSchema);
+const videoSchema = new mongoose.Schema({
+  title: String,
+  subtitle: String,
+  date: Date,
+  author: String,
+  url: String,
+  urlEnd:String,
+  dateString:String,
+  img:String
+});
+const Video = mongoose.model("Video", videoSchema);
 
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const app = express();
@@ -141,7 +142,13 @@ app.get("/ask-off-locust", function(req, res) {
 });
 
 app.get("/videos", function(req, res) {
-  res.render("videos");
+  Video.find(function(err, videos){
+    if(err){
+      console.log(err);
+    } else {
+      res.render("videos", {videos:videos});
+    }
+  })
 });
 
 app.get("/author/:authorName", function(req, res) {
@@ -155,13 +162,20 @@ app.get("/author/:authorName", function(req, res) {
 
   Article.find({author: requestedAuthor}).sort([['date', 1]]).exec(function(err, articles) {
     if (err) {
-      console.log("error");
+      console.log(err);
     } else {
-      res.render("author", {
-        authorName: _.toUpper(requestedAuthor),
-        authorLink: authorLink,
-        articles: articles
-        });
+      Video.find({author: requestedAuthor}).sort([['date', 1]]).exec(function(err, videos) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.render("author", {
+            authorName: _.toUpper(requestedAuthor),
+            articles: articles,
+            authorLink: authorLink,
+            videos:videos
+          });
+        }
+      });
     }
   });
 
@@ -183,6 +197,20 @@ app.get("/articles/:articleID", function(req, res){
             article:article,
             sectionAp:_.toUpper(curSection),
             articleID:  requestedID
+          });
+        }
+      });
+
+});
+
+app.get("/videos/:videoID", function(req, res){
+  const requestedID = req.params.videoID;
+
+  Video.findOne({_id: requestedID}, function(err, video) {
+    if (!err) {
+          res.render("video", {
+            video:video,
+            videoID:  requestedID
           });
         }
       });
@@ -234,9 +262,15 @@ var articleArray;
 
                   Question.find(function(err, questions) {
                     if (err) {
-                      console.log("error");
+                      console.log(err);
                     } else {
-                      res.render("compose", {articles:articleArray, questions: questions, topItems:topItems, errM:""});
+                      Video.find(function(err,videos){
+                        if(err){
+                          console.log(err);
+                        } else {
+                          res.render("compose", {articles:articleArray, questions: questions, videos:videos, topItems:topItems, errM:""});
+                        }
+                      });
                     }
                   });
 
@@ -427,7 +461,105 @@ app.post("/edit-article", function(req,res){
     } else {
       res.redirect("/");//temporary
     }
+  });
+
+});
+app.post("/new-video", function(req,res){
+  const body = req.body;
+  let d = req.body.date;
+  var date = new Date(d);
+  const url = req.body.url;
+
+  var urlEnd = "";
+  for (let i = url.length; i>0; i--){
+    if(url.charAt(i) == "/"){
+      break;
+    }
+    urlEnd = url.charAt(i).concat(urlEnd);
+    // console.log(urlEnd);
+  }
+
+  const newVideo = new Video ({
+    title: body.title,
+    subtitle:body.subtitle,
+    author: body.author,
+    img:body.img,
+    url:url,
+    urlEnd: urlEnd,
+    date:date,
+    dateString: months[date.getMonth()]+" "+(date.getDate())+", "+ date.getFullYear()
+  });
+
+  newVideo.save(function(err){
+    if(err){
+      console.log(err);
+    } else {
+      res.redirect("/videos")
+    }
   })
+});
+
+app.post("/select-edit-video", function(req,res){
+  const videoID = req.body.videoID;
+  Video.findOne({_id:videoID}, function(err, video){
+    if(err){
+      console.log(err);
+    } else{
+      let inputDate= "";
+      if(video.date){
+        let m = video.date.getMonth()+1;
+        let d = video.date.getDate()+1;
+        let y = video.date.getFullYear();
+
+        d < 10 ? d = "0"+d : d=d
+        m < 10 ? m = "0"+m : m=m
+        inputDate = y+"-"+m+"-"+d;
+
+      }
+
+      res.render("edit-video", {video:video, inputDate:inputDate});
+    }
+
+  })
+});
+
+app.post("/edit-video", function(req,res){
+  let title= req.body.title;
+  let subtitle = req.body.subtitle;
+  let author= req.body.author;
+  let img = req.body.img;
+  let videoID = req.body.videoID;
+  let url = req.body.url;
+  let d = req.body.date;
+  let date = new Date(d);
+  let dateString= months[date.getMonth()]+" "+(1+date.getDate())+", "+ date.getFullYear();
+
+  var urlEnd = "";
+  for (let i = url.length; i>0; i--){
+    if(url.charAt(i) == "/"){
+      break;
+    }
+    urlEnd = url.charAt(i).concat(urlEnd);
+    // console.log(urlEnd);
+  }
+
+  Video.updateOne({_id:videoID},{
+    title:title,
+    subtitle:subtitle,
+    author:author,
+    img:img,
+    url:url,
+    urlEnd: urlEnd,
+    date:date,
+    dateString:dateString
+    },
+    function(err){
+      if(err){
+        console.log(err);
+      } else {
+        res.redirect("/");//temporary
+      }
+  });
 
 });
 
@@ -457,7 +589,7 @@ app.post("/subscribe-newsletter", function(req,res){
     if (response.statusCode === 200) {
       res.render("success", {pageLink:pageLink});
     } else {
-      res.send(alert("hi"));
+      res.render("failure", {pageLink:pageLink});
     }
 
     response.on("data", function(data) {

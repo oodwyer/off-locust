@@ -3,12 +3,24 @@
 <h2 class="section-title"><%=authorName%></h2>
 
 <div id="card-row" class="container">
+  <% if(articles.length > 1){ %>
+    <h3>Articles:</h3><br />
+  <% } %>
   <div class="row">
-
     <%  articles.forEach(function(a){ %>
         <%- include("./partials/card", {articles:articles, a:a}); %>
-    <% }) %>
+    <% }); %>
+  </div>
+</div>
 
+<div id="video-card-row" class="container">
+  <% if(videos.length > 0){ %>
+    <h3>Videos:</h3><br />
+  <% } %>
+  <div class="row">
+<%  videos.forEach(function(v){ %>
+    <%- include("./partials/video-card", {videos:videos, v:v}); %>
+<% }); %>
   </div>
 </div>
 <% const pageLink = "/author/" + authorLink; %>
