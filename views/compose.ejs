@@ -92,10 +92,9 @@
   <form class="" action="/top5" method="post">
     <h2>Top 5 Trending (Avant-Garde)</h2>
       <p>To add a link, format it like this: {{linkText,link}} with spaces before and after. If there are spaces in the link text, please format it like this: {{link_text_here,link.com}}</p>
-    <% topItems.forEach(function(item){ %>
-      <% console.log(item, item[0], item[1]) %>
-      <label><%= item[0] %>)</label>
-      <input type="text" name= "items" size="80" value="<%=item[1]%>"><br />
+    <% items.forEach(function(item){ %>
+      <label><%= item.number %>)</label>
+      <input type="text" name= "items" size="80" value="<%=item.content%>"><br />
     <% }); %>
     <button type="submit" name="button" class="btn btn-secondary">Update</button>
   </form>
