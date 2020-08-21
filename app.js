@@ -54,15 +54,26 @@ const videoSchema = new mongoose.Schema({
 });
 const Video = mongoose.model("Video", videoSchema);
 
+const itemSchema = new mongoose.Schema({
+  number:Number,
+  content:String
+})
+const Item = mongoose.model("Item", itemSchema);
+
+// const sampleItem = new Item({
+//   number:1,
+//   content:"hi"
+// });
+// sampleItem.save();
+
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const app = express();
+//vv This doesn't do anything but im scared to delete it vv
 var topItems = [[1,"Fulfilling your civic duty and {{registering_to_vote_in_PA,https://www.pavoterservices.pa.gov/Pages/VoterRegistrationApplication.aspx}}"],[2,"Blasting Miley’s latest banger {{“Midnight_Sky”,https://www.youtube.com/watch?v=aS1no1myeTM}}"],[3,"Eye glitter and vibrant colored eyeshadows to fulfill your Euphoria fantasy"],[4,"Dorm gardens because deep down we’re all a little {{cottagecore,https://en.wikipedia.org/wiki/Cottagecore}}"],[5,"{{Magic_Spoon_cereal,https://magicspoon.com}} for health nuts looking to satisfy their sweet tooth"]]
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-
-
 
 app.get("/login", function(req, res){
   res.render("login", {errorMess:""});
@@ -109,10 +120,13 @@ app.get("/avant-garde", function(req, res) {
     if (err) {
       console.log("error");
     } else {
-      res.render("avant-garde", {
-        articles: articles,
-        topItems:topItems
-        });
+      Item.find(function(err,items){
+        if(err){
+          console.log(err);
+        } else {
+          res.render("avant-garde", {articles: articles, items:items});
+        }
+      });
     }
   });
 });
@@ -120,11 +134,9 @@ app.get("/avant-garde", function(req, res) {
 app.get("/after-hours", function(req, res) {
   Article.find({section: "after-hours"}).sort([['date', 1]]).exec(function(err, articles) {
     if (err) {
-      console.log("error");
+      console.log(err);
     } else {
-      res.render("after-hours", {
-        articles: articles
-        });
+          res.render("after-hours", {articles: articles, items:items});
     }
   });
 });
@@ -132,7 +144,7 @@ app.get("/after-hours", function(req, res) {
 app.get("/ask-off-locust", function(req, res) {
   Article.find({section: "ask-off-locust"}).sort([['date', 1]]).exec(function(err, articles) {
     if (err) {
-      console.log("error");
+      console.log(err);
     } else {
       res.render("ask-off-locust", {
         articles: articles
@@ -268,7 +280,13 @@ var articleArray;
                         if(err){
                           console.log(err);
                         } else {
-                          res.render("compose", {articles:articleArray, questions: questions, videos:videos, topItems:topItems, errM:""});
+                          Item.find(function(err,items){
+                            if(err){
+                              console.log(err);
+                            } else {
+                              res.render("compose", {articles:articleArray, questions: questions, videos:videos, topItems:topItems, errM:"", items:items});
+                            }
+                          });
                         }
                       });
                     }
@@ -602,15 +620,15 @@ app.post("/subscribe-newsletter", function(req,res){
 
 });
 
-//API Key: 76647c8a82052cedd7a99c2c316f6f50-us17
-//List ID: 8c86519328
-
 app.post("/top5", function(req,res){
   const items = req.body.items;
   items.forEach(function(item,i){
-    topItems[i][1] = item;
+    Item.updateOne({number:i+1},{content:item},function(err){
+      if(err){
+        console.log(err);
+      }
+    });
   });
-  console.log(topItems);
   res.redirect("/avant-garde")
 });
 

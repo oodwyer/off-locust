@@ -5,10 +5,10 @@
 <div id="top-5">
   <div class="">
     <h2>Top 5 Trending</h2>
-    <% topItems.forEach((item, i) => {  %>
+    <% items.forEach((item, i) => {  %>
       <hr />
-      <h4 class="top-5-title"><b class="top-5-number"><%=item[0]%> </b>
-        <% var words = item[1].split(" ");%>
+      <h4 class="top-5-title"><b class="top-5-number"><%=item.number%> </b>
+        <% var words = item.content.split(" ");%>
         <% words.forEach(function(w) {%>
         <% if(w.substring(0,2) === "{{") {%>
         <% var linkGroup = w.split(",")%>
