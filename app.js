@@ -56,7 +56,7 @@ const Video = mongoose.model("Video", videoSchema);
 
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const app = express();
-var topItems = [[1,"Sample trending thing number one"],[2,"Longer longer sample trending thing number two"],[3,"Sample item number three"],[4,"Sample item 4"],[5,"Sample item 5"]]
+var topItems = [[1,"Fulfilling your civic duty and {{registering_to_vote_in_PA,https://www.pavoterservices.pa.gov/Pages/VoterRegistrationApplication.aspx}}"],[2,"Blasting Miley’s latest banger {{“Midnight_Sky”,https://www.youtube.com/watch?v=aS1no1myeTM}}"],[3,"Eye glitter and vibrant colored eyeshadows to fulfill your Euphoria fantasy"],[4,"Dorm gardens because deep down we’re all a little {{cottagecore,https://en.wikipedia.org/wiki/Cottagecore}}"],[5,"{{Magic_Spoon_cereal,https://magicspoon.com}} for health nuts looking to satisfy their sweet tooth"]]
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
