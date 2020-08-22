@@ -136,7 +136,7 @@ app.get("/after-hours", function(req, res) {
     if (err) {
       console.log(err);
     } else {
-          res.render("after-hours", {articles: articles, items:items});
+          res.render("after-hours", {articles: articles});
     }
   });
 });
