@@ -229,6 +229,10 @@ app.get("/videos/:videoID", function(req, res){
 
 });
 
+app.get("/apply", function(req, res) {
+  res.render("apply");
+});
+
 app.post("/question", function(req, res) {
   //create new question object
   const question = new Question({
@@ -480,6 +484,7 @@ app.post("/edit-article", function(req,res){
       res.redirect("/");//temporary
     }
   });
+
 
 });
 app.post("/new-video", function(req,res){

@@ -501,6 +501,14 @@ a h5{
     padding-bottom: 56.25%;
 }
 
+#apply {
+  text-align: center;
+
+}
+
+#apply .a {
+  color: red;
+}
 
 
 /*Login page */
